@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Jet">#353535</color>
+    <color name="Burnt_Sienna">#E76F51</color>
+    <color name="Sandy_Brown">#F4A261</color>
+    <color name="Orange_Yellow_Crayola">#E9C46A</color>
+    <color name="Persian_Green">#2A9D8F</color>
+    <color name="Teal_Blue">#4E8098</color>
+    <color name="Indigo_Dye">#284B63</color>
+    <color name="Ash_Gray">#B0BFB5</color>
+    <color name="Light_Gray">#CED3DC</color>
+    <color name="Snow">#FCF7F8</color>
+</resources>
