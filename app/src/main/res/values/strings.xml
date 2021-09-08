@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Awaree</string>
+    <string name="email">Email</string>
+    <string name="password">Parola</string>
+    <string name="passwordForgot">Ți-ai uitat parola?</string>
+    <string name="login">Login</string>
+    <string name="register">Inregristrare</string>
+    <string name="username">Nume de utilizator</string>
+    <string name="needAccount">Nu ai cont?</string>
+    <string name="alreadyHaveAccount">Ai deja un cont?</string>
 </resources>

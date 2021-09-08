@@ -19,4 +19,13 @@
         <item name="android:layout_height">50dp</item>
     </style>
 
+    <style name="poppins" parent="android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="LoginButtons">
+        <item name="fontFamily"></item>
+    </style>
+
+
 </resources>

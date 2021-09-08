@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_startup_login);
+
 
         //Toast.makeText(MainActivity.this, "Firebase connected successfully.", Toast.LENGTH_SHORT).show();
 
