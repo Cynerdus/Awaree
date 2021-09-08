@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup_login);
 
-
-        //Toast.makeText(MainActivity.this, "Firebase connected successfully.", Toast.LENGTH_SHORT).show();
-
         //reference = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/").getReference();
         //user = new User(1, "Vasile", "Petrescu", "Vasi", "vasipetrescu@gmail.com", true, "vasitotal123", "CTI", "CB");
 
