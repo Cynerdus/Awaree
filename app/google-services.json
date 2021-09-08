@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "65970928976",
+    "project_id": "awaree-ea116",
+    "storage_bucket": "awaree-ea116.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65970928976:android:29d5863c8aace516d3c055",
+        "android_client_info": {
+          "package_name": "com.awareeTeam.awaree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65970928976-tb1mvbghm7uab6pqfm26k28io0rudb6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwpwipFPPgsDvwBnwRKSrpD7rgWLPPWvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65970928976-tb1mvbghm7uab6pqfm26k28io0rudb6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
