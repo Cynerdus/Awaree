@@ -38,13 +38,14 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/button"
                 android:ems="10"
-                android:fontFamily="@font/poppinsregular"
+                android:fontFamily="@font/josefinsans_regular"
                 android:inputType="textWebEmailAddress|textAutoComplete"
                 android:padding="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/email" />
+                app:layout_constraintTop_toBottomOf="@+id/email"
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
             <EditText
@@ -60,7 +61,8 @@
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password" />
+                app:layout_constraintTop_toBottomOf="@+id/password"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/email"
@@ -118,7 +120,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/login" />
+                app:layout_constraintTop_toBottomOf="@+id/login"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/login"

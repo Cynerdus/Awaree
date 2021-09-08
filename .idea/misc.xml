@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/font/poppins.xml" value="0.1436936936936937" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_introduction.xml" value="0.1" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_log_in.xml" value="0.171875" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_main.xml" value="0.171875" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_splash_screen.xml" value="0.171875" />
+        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_login.xml" value="0.1" />
+        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_register.xml" value="0.1" />
       </map>
     </option>
   </component>
