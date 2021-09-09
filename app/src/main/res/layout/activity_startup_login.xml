@@ -133,7 +133,7 @@
                 android:layout_marginStart="128dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="128dp"
-                android:background="@drawable/button"
+                android:background="@drawable/button_default"
                 android:fontFamily="@font/josefinsans_bold"
                 android:onClick="onClick"
                 android:text="@string/login"

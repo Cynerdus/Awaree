@@ -115,7 +115,7 @@ public class Register extends AppCompatActivity {
                                             reference.child((int) (snapshot.getChildrenCount() + 1) + "").setValue(user);
                                             Log.d("DB Read", "Added data to database successfully.");
 
-                                            Intent intent = new Intent(Register.this, AccountSetupActivity.class);
+                                            Intent intent = new Intent(Register.this, QuestionsActivity.class);
                                             startActivity(intent);
                                             finish();
                                         }
