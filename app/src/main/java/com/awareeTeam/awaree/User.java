@@ -2,9 +2,7 @@ package com.awareeTeam.awaree;
 
 public class User {
     private int ID;
-    private String FirstName;
-    private String SecondName;
-    private String Nickname;
+    private String Username;
     private String Email;
     private boolean IsEmailVerified;
     private String Password;
@@ -14,11 +12,9 @@ public class User {
     public User() {
     }
 
-    public User(int ID, String firstName, String secondName, String nickname, String email, boolean isEmailVerified, String password, String profile, String series) {
+    public User(int ID, String username, String email, boolean isEmailVerified, String password, String profile, String series) {
         this.ID = ID;
-        FirstName = firstName;
-        SecondName = secondName;
-        Nickname = nickname;
+        Username = username;
         Email = email;
         IsEmailVerified = isEmailVerified;
         Password = password;
@@ -34,28 +30,12 @@ public class User {
         this.ID = ID;
     }
 
-    public String getFirstName() {
-        return FirstName;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
-
-    public String getSecondName() {
-        return SecondName;
-    }
-
-    public void setSecondName(String secondName) {
-        SecondName = secondName;
-    }
-
-    public String getNickname() {
-        return Nickname;
-    }
-
-    public void setNickname(String nickname) {
-        Nickname = nickname;
+    public void setUsername(String username) {
+        Username = username;
     }
 
     public String getEmail() {
@@ -98,10 +78,11 @@ public class User {
         Series = series;
     }
 
-    private enum profile{
+    private enum profile {
         CTI, IS;
     }
-    private enum series{
+
+    private enum series {
         CA, CB, CC, CD, AA, AB, AC, AD;
     }
 }

@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startup_login);
+        setContentView(R.layout.activity_main);
 
-        //reference = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/").getReference();
+        //database = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/");
+        //reference = database.getReference();
         //user = new User(1, "Vasile", "Petrescu", "Vasi", "vasipetrescu@gmail.com", true, "vasitotal123", "CTI", "CB");
 
-        //reference.push().setValue(user);
+        //reference.child("User").child(user.getID() + "");
+        //reference = database.getReference("User/" + user.getID() + "");
+        //reference.child("User").child(user.getID() + "").setValue(user);
 
     }
 }
