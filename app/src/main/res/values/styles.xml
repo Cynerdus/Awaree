@@ -24,7 +24,12 @@
     </style>
 
     <style name="LoginButtons">
-        <item name="fontFamily"></item>
+        <item name="fontFamily">@font/josefinsans_bold</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:background">@drawable/button_login</item>
+    </style>
+    <style name="ProgressBarHomework">
+        <item name="color">@color/Burnt_Sienna</item>
     </style>
 
 

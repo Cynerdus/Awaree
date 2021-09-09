@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:background="@drawable/background"
+    android:elevation="8dp"
+    android:id="@+id/parent_layout"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/className"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppinsbold"
+                android:text="Physics Homework"
+                android:textColor="@color/Jet"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/difficultyLvl"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="0"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="TextView"
+                android:textColor="@color/Ash_Gray"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/difficulty"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="32dp"
+                android:backgroundTint="@color/Jet"
+                android:layout_marginTop="24dp"
+                android:progress="90"
+                android:progressDrawable="@drawable/progressbar"
+                android:progressTint="@color/Persian_Green" />
+
+            <TextView
+                android:id="@+id/difficultyTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="28dp"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/Ash_Gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

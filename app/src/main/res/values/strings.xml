@@ -1,11 +1,23 @@
 <resources>
-    <string name="app_name">Awaree</string>
-    <string name="email">Email</string>
+    <string name="app_name" translatable="false">Awaree</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <!-- Strings related to login -->
+    <string name="invalid_username">Username invalid sau deja exista</string>
+    <string name="invalid_password">Parola trebuie sa aiba >6 caractere</string>
+    <string name="login_failed">Login esuat</string>
+    <string name="email" translatable="false">Email</string>
     <string name="password">Parola</string>
     <string name="passwordForgot">Ți-ai uitat parola?</string>
-    <string name="login">Login</string>
-    <string name="register">Inregristrare</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="register">Înregristrare</string>
     <string name="username">Nume de utilizator</string>
     <string name="needAccount">Nu ai cont?</string>
     <string name="alreadyHaveAccount">Ai deja un cont?</string>
+    <string name="question_01">Ce specializare ești?</string>
+    <string name="question_02">Ce serie ești?</string>
+    <string name="question_03">Ce grupă ești?</string>
+    <string name="question_04">Participi la activității facultative?</string>
+    <string name="answer">Răspuns</string>
+    <string name="welcome_back">Bine ai revenit</string>
 </resources>
