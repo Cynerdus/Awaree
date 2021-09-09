@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Greeting the user
         username = "Vasi";
-        //BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
         //NavController navController = Navigation.findNavController(this, R.id.nav_main);
         //AppBarConfiguration appBarConfiguration = AppBarConfiguration(R.id.mainActivity);
         //NavigationUI.setupWithNavController(bottomNavigationView, navController);

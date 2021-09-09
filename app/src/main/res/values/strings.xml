@@ -14,6 +14,7 @@
     <string name="username">Nume de utilizator</string>
     <string name="needAccount">Nu ai cont?</string>
     <string name="alreadyHaveAccount">Ai deja un cont?</string>
+    <!-- Strings related to questions -->
     <string name="question_01">Ce specializare ești?</string>
     <string name="question_02">Ce serie ești?</string>
     <string name="question_03">Ce grupă ești?</string>
