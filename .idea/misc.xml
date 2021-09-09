@@ -3,13 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/font/poppins.xml" value="0.1436936936936937" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_introduction.xml" value="0.1" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_log_in.xml" value="0.171875" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_main.xml" value="0.171875" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_splash_screen.xml" value="0.171875" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_login.xml" value="0.1" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_register.xml" value="0.1" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.246875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/background.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/background_splash.xml" value="0.246875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button.xml" value="0.246875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_focused.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_login.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_pressed.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.4203125" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2328125" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.4203125" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/progressBar.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/progressbar.xml" value="0.4203125" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/subjects.xml" value="0.4203125" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/transition.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/font/josefin.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/font/poppins.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_homework.xml" value="0.271875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_introduction.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_questions.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_questions_01.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_splash_screen.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_startup.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_startup_login.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_startup_register.xml" value="0.264" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_blank.xml" value="0.271875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_login.xml" value="0.271875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_main.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/layout_homework.xml" value="0.4" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/layout_subject.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/menu/bottom_navigation.xml" value="0.4041666666666667" />
       </map>
     </option>
   </component>

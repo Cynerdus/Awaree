@@ -3,11 +3,14 @@ package com.awareeTeam.awaree;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,9 @@ public class Login extends AppCompatActivity {
             }
         });
         configureLoginButton();
+
+
+
     }
 
     private void configureLoginButton(){
@@ -41,6 +47,12 @@ public class Login extends AppCompatActivity {
                 String emailString = email.getText().toString();
                 String passwordString = password.getText().toString();
                 Toast.makeText(Login.this, "Hello " + emailString, Toast.LENGTH_LONG).show();
+                if (true){ // TODO implement error if login incorrect
+                    startActivity(new Intent(Login.this, QuestionsActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(Login.this, "password incorrect", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
