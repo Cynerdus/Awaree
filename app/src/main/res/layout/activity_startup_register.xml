@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/login_02" />
 
             <EditText
-                android:id="@+id/loginEmail"
+                android:id="@+id/registerEmail"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="64dp"
@@ -51,7 +51,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
-                android:id="@+id/loginUsername"
+                android:id="@+id/registerUsername"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="64dp"
@@ -68,7 +68,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
-                android:id="@+id/loginPassword"
+                android:id="@+id/registerPassword"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="64dp"
@@ -78,7 +78,7 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/register"
+                app:layout_constraintBottom_toTopOf="@+id/registerButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,8 +93,8 @@
                 android:fontFamily="@font/josefinsans_bold"
                 android:textSize="16dp"
                 android:text="@string/email"
-                app:layout_constraintBottom_toTopOf="@+id/loginEmail"
-                app:layout_constraintStart_toStartOf="@+id/loginEmail" />
+                app:layout_constraintBottom_toTopOf="@+id/registerEmail"
+                app:layout_constraintStart_toStartOf="@+id/registerEmail" />
 
             <TextView
                 android:id="@+id/username"
@@ -105,8 +105,8 @@
                 android:fontFamily="@font/josefinsans_bold"
                 android:textSize="16dp"
                 android:text="@string/username"
-                app:layout_constraintBottom_toTopOf="@+id/loginUsername"
-                app:layout_constraintStart_toStartOf="@+id/loginUsername" />
+                app:layout_constraintBottom_toTopOf="@+id/registerUsername"
+                app:layout_constraintStart_toStartOf="@+id/registerUsername" />
 
             <TextView
                 android:id="@+id/passwor"
@@ -117,8 +117,8 @@
                 android:fontFamily="@font/josefinsans_bold"
                 android:textSize="16dp"
                 android:text="@string/password"
-                app:layout_constraintBottom_toTopOf="@+id/loginPassword"
-                app:layout_constraintStart_toStartOf="@+id/loginPassword" />
+                app:layout_constraintBottom_toTopOf="@+id/registerPassword"
+                app:layout_constraintStart_toStartOf="@+id/registerPassword" />
 
             <TextView
                 android:id="@+id/alreadyHaveAccount"
@@ -129,12 +129,11 @@
                 android:textSize="16dp"
                 android:text="@string/alreadyHaveAccount"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/register"
-                app:layout_constraintStart_toStartOf="@+id/register" />
+                app:layout_constraintEnd_toEndOf="@+id/registerButton"
+                app:layout_constraintStart_toStartOf="@+id/registerButton" />
 
             <Button
-                android:id="@+id/register"
-                style="@style/LoginButtons"
+                android:id="@+id/registerButton"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="128dp"
@@ -142,12 +141,36 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/button_default"
                 android:fontFamily="@font/josefinsans_bold"
-                android:text="@string/register"
                 android:textSize="16dp"
+                android:text="@string/register"
                 app:layout_constraintBottom_toTopOf="@+id/alreadyHaveAccount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/errorEmailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/email"
+                app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
+
+            <TextView
+                android:id="@+id/errorUsernameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/username"
+                app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
+
+            <TextView
+                android:id="@+id/errorPasswordText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/passwor"
+                app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

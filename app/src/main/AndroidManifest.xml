@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AccountSetupActivity"
+            android:exported="true" />
+        <activity
             android:name=".IntroductionActivity"
             android:exported="true" />
         <activity
