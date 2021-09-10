@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main"
+        android:id="@+id/nav_home"
         android:title="Home"
         android:icon="@drawable/home_nav"
         android:iconTint="@color/Snow"/>
     <item
-        android:id="@+id/login"
+        android:id="@+id/nav_subjects"
         android:title="Subjects"
         android:icon="@drawable/subjects_nav"
         android:iconTint="@color/Snow"/>
     <item
-        android:id="@+id/questionsActivity"
+        android:id="@+id/nav_settings"
         android:title="Settings"
         android:icon="@drawable/settings_nav"
         android:iconTint="@color/Snow" />
