@@ -9,6 +9,7 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,18 +27,15 @@ public class Login extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private ImageView missingEmail, missingPassword;
     private User user;
+    private Button loginButton;
+    private EditText email, password;
+    private TextView emailError, passwordError, passwordForgotten;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup_login);
-
-        missingEmail = (ImageView) findViewById(R.id.missingEmailImageView);
-        missingPassword = (ImageView) findViewById(R.id.missingPassImageView);
-        missingEmail.setVisibility(View.INVISIBLE);
-        missingPassword.setVisibility(View.INVISIBLE);
 
         TextView needAccount = (TextView) findViewById(R.id.needAccount);
         needAccount.setOnClickListener(new View.OnClickListener() {
@@ -46,14 +44,12 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, Register.class));
             }
         });
+        initialSetup();
         configureLoginButton();
+        forgotPassword();
     }
 
     private void configureLoginButton() {
-
-        Button loginButton = (Button) findViewById(R.id.login);
-        EditText email = (EditText) findViewById(R.id.loginEmail);
-        EditText password = (EditText) findViewById(R.id.loginPassword);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +58,13 @@ public class Login extends AppCompatActivity {
                 String passwordString = password.getText().toString();
 
                 if (emailString.isEmpty()) {
-                    missingEmail.setVisibility(View.VISIBLE);
-                    Toast.makeText(Login.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
-                } else missingEmail.setVisibility(View.INVISIBLE);
+                    emailError.setText("Please enter your email address.");
+                    emailError.setVisibility(View.VISIBLE);
+                } else emailError.setVisibility(View.INVISIBLE);
                 if (passwordString.isEmpty()) {
-                    missingPassword.setVisibility(View.VISIBLE);
-                    Toast.makeText(Login.this, "Please enter a password.", Toast.LENGTH_SHORT).show();
-                } else missingPassword.setVisibility(View.INVISIBLE);
+                    passwordError.setText("Please enter your password.");
+                    passwordError.setVisibility(View.VISIBLE);
+                } else passwordError.setVisibility(View.INVISIBLE);
 
                 if (!emailString.isEmpty() && !passwordString.isEmpty()) {
                     database = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/");
@@ -80,13 +76,15 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Log.d("DB Read", "Checkpoint 2 passed successfully. Looking through User's children.");
-                            int i = 1;
+
+                            boolean validEmail = false;
                             for (DataSnapshot data : snapshot.getChildren()) {
-                                Log.d("DB Read", "Starting to check child no " + i + ".");
-                                Log.d("DB Read", "User " + data.getValue(User.class).getUsername() + " has ID " + i + ".");
+
+                                Log.d("DB Read", "User " + data.getValue(User.class).getUsername() + " has ID " + data.getValue(User.class).getID() + ".");
                                 user = new User();
                                 user.setEmail(data.getValue(User.class).getEmail());
                                 if (user != null && user.getEmail().equals(emailString)) {
+                                    validEmail = true;
                                     Log.d("DB Read", "Found the dude.");
                                     user.setPassword(data.getValue(User.class).getPassword());
                                     if (user.getPassword().equals(passwordString)) {
@@ -94,10 +92,10 @@ public class Login extends AppCompatActivity {
                                         user.setSeries(data.getValue(User.class).getSeries());
                                         user.setUsername(data.getValue(User.class).getUsername());
                                         user.setEmailVerified(data.getValue(User.class).isEmailVerified());
-                                        user.setID(i);
+                                        user.setID((int) snapshot.getChildrenCount() + 1);
 
-                                        missingEmail.setVisibility(View.INVISIBLE);
-                                        missingPassword.setVisibility(View.INVISIBLE);
+                                        emailError.setVisibility(View.INVISIBLE);
+                                        passwordError.setVisibility(View.INVISIBLE);
                                         Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
 
                                         new Handler().postDelayed(new Runnable() {
@@ -109,19 +107,17 @@ public class Login extends AppCompatActivity {
                                             }
                                         }, 400);
 
-                                        break;
                                     } else {
                                         Log.d("DB Read", "Valid email address, incorrect password.");
-                                        Toast.makeText(Login.this, "Incorrect Password.", Toast.LENGTH_SHORT).show();
-                                        missingPassword.setVisibility(View.VISIBLE);
+                                        passwordError.setText("Incorrect password.");
+                                        passwordError.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }
-                            if (!user.getEmail().equals(emailString)) {
+                            if (!validEmail) {
                                 Log.d("DB Read", "Invalid email address.");
-                                Toast.makeText(Login.this, "Invalid email address", Toast.LENGTH_SHORT).show();
-                                missingEmail.setVisibility(View.VISIBLE);
-                                missingPassword.setVisibility(View.VISIBLE);
+                                emailError.setText("Invalid email address.");
+                                emailError.setVisibility(View.VISIBLE);
                             }
                         }
 
@@ -135,5 +131,89 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void forgotPassword() {
+        passwordForgotten = (TextView) findViewById(R.id.passwordForgot);
+
+        passwordForgotten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (email.getText().toString().isEmpty()) {
+                    emailError.setText("Please enter the email first.");
+                    emailError.setVisibility(View.VISIBLE);
+                } else {
+                    if (!isEmailValid(email.getText().toString())) {
+                        emailError.setText("Please enter a valid email address.");
+                        emailError.setVisibility(View.VISIBLE);
+                    } else {
+                        emailError.setVisibility(View.INVISIBLE);
+                        database = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/");
+                        reference = database.getReference("User");
+
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                boolean foundTheDude = false;
+                                User user = new User();
+                                for (DataSnapshot data : snapshot.getChildren()) {
+                                    if (data.getValue(User.class).getEmail().equals(email.getText().toString())) {
+                                        foundTheDude = true;
+                                        user = data.getValue(User.class);
+                                    }
+                                }
+                                if (foundTheDude) {
+                                    emailError.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(Login.this, "A mail containing the account details has been sent to the registered email address.", Toast.LENGTH_LONG).show();
+
+                                    String emailBody = "Hello there! You requested a mail with your account details.\n\n\n\n---------------------\nUsername: " + user.getUsername() + "\nPassword: " + user.getPassword() + "\n---------------------\n\n\nThank you for choosing Awaree! We wish you all the best,\nAwareeTeam.";
+
+                                    new Thread(new Runnable() {
+                                        public GMailSender sender;
+
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                sender = new GMailSender("awareeFeedback@gmail.com",
+                                                        "qwertyuiop345"); //o tinem temporar, facem alta daca publicam aplicatia
+                                                sender.sendMail("Awaree Password Recovery", emailBody,
+                                                        "awareeFeedback@gmail.com", email.getText().toString());
+                                            } catch (Exception e) {
+                                                Log.e("SendMail", e.getMessage(), e);
+                                            }
+                                        }
+
+                                    }).start();
+                                }else{
+                                    emailError.setText("Email not registered.");
+                                    emailError.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    private void initialSetup() {
+        loginButton = (Button) findViewById(R.id.login);
+        email = (EditText) findViewById(R.id.loginEmail);
+        password = (EditText) findViewById(R.id.loginPassword);
+
+        emailError = (TextView) findViewById(R.id.emailError);
+        passwordError = (TextView) findViewById(R.id.passwordError);
+        emailError.setTextColor(getColor(R.color.Burnt_Sienna));
+        passwordError.setTextColor(getColor(R.color.Burnt_Sienna));
+        emailError.setVisibility(View.INVISIBLE);
+        passwordError.setVisibility(View.INVISIBLE);
+    }
+
+    private boolean isEmailValid(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
