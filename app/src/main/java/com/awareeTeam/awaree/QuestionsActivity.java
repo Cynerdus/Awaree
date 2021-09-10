@@ -8,11 +8,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
 public class QuestionsActivity extends AppCompatActivity {
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private User user;
+    private int userID;
+
     private String profile;
     private String serie;
     private String group;
@@ -38,6 +50,8 @@ public class QuestionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
+        connectToDatabase();
+
         configureQuestion01();
         //configureQuestion02();
         configureQuestion03();
@@ -60,18 +74,18 @@ public class QuestionsActivity extends AppCompatActivity {
         cti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO conecteaza raspunsul la baza de date
                 profile = "CTI";
                 setProfile(profile);
+                reference.child(userID + "").child("profile").setValue(profile);
                 nextView();
             }
         });
         is.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO conecteaza raspunsul la baza de date
                 profile = "IS";
                 setProfile(profile);
+                reference.child(userID + "").child("profile").setValue(profile);
                 nextView();
             }
         });
@@ -100,17 +114,17 @@ public class QuestionsActivity extends AppCompatActivity {
                 serie = "CD";
                 break;
         }
+        reference.child(userID + "").child("series").setValue(serie);
         Toast.makeText(QuestionsActivity.this, serie, Toast.LENGTH_SHORT).show();
         nextView();
-        // TODO conecteaza raspunsul la baza de date
     }
     public void configureQuestion03(){
         answer_03 = findViewById(R.id.answerText_03);
         answer_03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO conecteaza raspunsul la baza de date
                 group = answer_03.getText().toString();
+                reference.child(userID + "").child("group").setValue(group);
                 Toast.makeText(QuestionsActivity.this, group, Toast.LENGTH_SHORT).show();
                 nextView();
             }
@@ -123,6 +137,7 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 isVoluntar = true;
+                reference.child(userID + "").child("isVolunteer").setValue(isVoluntar);
                 Toast.makeText(QuestionsActivity.this, isVoluntar + " congratulations", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(QuestionsActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -133,13 +148,13 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 isVoluntar = false;
+                reference.child(userID + "").child("isVolunteer").setValue(isVoluntar);
                 Toast.makeText(QuestionsActivity.this, isVoluntar + " congratulations", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(QuestionsActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-        // TODO conecteaza raspunsul la baza de date
     }
 
     public void setProfile(String profile){
@@ -167,5 +182,12 @@ public class QuestionsActivity extends AppCompatActivity {
             CC.setVisibility(View.GONE);
             CD.setVisibility(View.GONE);
         }
+    }
+
+    private void connectToDatabase()
+    {
+        database = FirebaseDatabase.getInstance("https://awaree-ea116-default-rtdb.firebaseio.com/");
+        reference = database.getReference("User");
+        userID = getIntent().getExtras().getInt("id");
     }
 }

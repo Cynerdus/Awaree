@@ -8,9 +8,10 @@
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="onClick"
+        app:layout_anchorGravity="center"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,8 +87,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
                 android:text="@string/password"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/loginPassword"
                 app:layout_constraintStart_toStartOf="@+id/loginPassword" />
 
@@ -95,16 +96,16 @@
                 android:id="@+id/passwordForgot"
                 android:layout_width="138dp"
                 android:layout_height="22dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginBottom="20dp"
+                android:clickable="true"
                 android:fontFamily="@font/josefinsans_bold"
+                android:onClick="onClick"
                 android:text="@string/passwordForgot"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/login"
-                app:layout_constraintStart_toStartOf="@+id/loginPassword"
-                app:layout_constraintTop_toBottomOf="@+id/loginPassword"
-                app:layout_constraintVertical_bias="0.100000024" />
+                app:layout_constraintStart_toStartOf="@+id/passwordError"
+                app:layout_constraintTop_toBottomOf="@+id/passwordError"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/needAccount"
@@ -143,25 +144,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
-            <ImageView
-                android:id="@+id/missingEmailImageView"
+            <TextView
+                android:id="@+id/emailError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/loginEmail"
-                app:layout_constraintStart_toEndOf="@+id/loginEmail"
-                app:srcCompat="@android:drawable/ic_delete" />
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/email"
+                app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
-            <ImageView
-                android:id="@+id/missingPassImageView"
+            <TextView
+                android:id="@+id/passwordError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/loginPassword"
-                app:layout_constraintStart_toEndOf="@+id/loginPassword"
-                app:srcCompat="@android:drawable/ic_delete" />
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/password"
+                app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

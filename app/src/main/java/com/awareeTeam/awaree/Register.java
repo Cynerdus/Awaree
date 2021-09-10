@@ -76,9 +76,16 @@ public class Register extends AppCompatActivity {
                         reference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                boolean foundTheDude = false, usernameTaken = false;
+                                boolean foundTheDude = false, usernameTaken = false, check = false;
+                                int countIds = 1;
+
                                 Log.d("DB Read", "Starting to look through users for email '" + emailString + "'.");
                                 for (DataSnapshot data : snapshot.getChildren()) {
+                                    if (data.getValue(User.class).getID() == countIds && !check) {
+                                        countIds++;
+                                    } else check = true;
+
+
                                     if (data.getValue(User.class).getEmail().equals(emailString)) {
                                         errorEmailText.setText("Email address already registered.");
                                         errorEmailText.setVisibility(View.VISIBLE);
@@ -108,14 +115,15 @@ public class Register extends AppCompatActivity {
                                             //daca am ajuns aici, suntem bines
                                             Log.d("DB Read", "User information is valid. Proceeding to next step.");
                                             User user = new User();
-                                            user.setID((int) snapshot.getChildrenCount() + 1);
+                                            user.setID(countIds);
                                             user.setEmail(emailString);
                                             user.setUsername(usernameString);
                                             user.setPassword(passwordString);
-                                            reference.child((int) (snapshot.getChildrenCount() + 1) + "").setValue(user);
+                                            reference.child(countIds + "").setValue(user);
                                             Log.d("DB Read", "Added data to database successfully.");
 
                                             Intent intent = new Intent(Register.this, QuestionsActivity.class);
+                                            intent.putExtra("id", user.getID());
                                             startActivity(intent);
                                             finish();
                                         }
