@@ -47,15 +47,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="">
+                android:layout_weight="0">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="bottom"
                     android:layout_weight="1"
-                    android:layout_marginTop="8dp"
                     android:text="TextView"
                     android:fontFamily="@font/poppinssemibold"
                     android:textAlignment="textStart"
@@ -67,7 +66,6 @@
                     android:layout_height="wrap_content"
                     android:paddingEnd="8dp"
                     android:gravity="center"
-                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppinsbold"
                     android:textAlignment="viewStart"

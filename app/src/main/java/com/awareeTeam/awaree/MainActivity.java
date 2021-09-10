@@ -1,15 +1,15 @@
 package com.awareeTeam.awaree;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,28 +32,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d(TAG, "onCreate: Opened activity");
         //Greeting the user
-        username = "Vasi";
+        //username = "Vasi";
+        //greet = findViewById(R.id.greeting);
+        //greet.setText("Welcome back " + username);
+
+        Log.d(TAG, "onCreate: Set greeting");
         BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
-        //NavController navController = Navigation.findNavController(this, R.id.nav_main);
-        //AppBarConfiguration appBarConfiguration = AppBarConfiguration(R.id.mainActivity);
-        //NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
 
 
-        greet = findViewById(R.id.greeting);
-        greet.setText("Welcome back " + username);
 
         initHomework();
+        Log.d(TAG, "onCreate: initialised homework");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    return false;
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()){
+                        case R.id.nav_home:
+                            selectedFragment = new DashboardFragment();
+                            break;
+                        case R.id.nav_subjects:
+                            selectedFragment = new SubjectsFragment();
+                            break;
+                        case R.id.nav_settings:
+                            //selectedFragment = new HomeFragment();
+                            break;
+                    }
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    return true;
                 }
             };
+
 
     private void initHomework(){
 
