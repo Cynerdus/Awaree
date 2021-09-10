@@ -2,10 +2,13 @@ package com.awareeTeam.awaree;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        initHomework();
+
         Log.d(TAG, "onCreate: initialised homework");
+        initHomework();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -57,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
                         case R.id.nav_home:
+                            Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
                             selectedFragment = new DashboardFragment();
+                            initHomework();
                             break;
                         case R.id.nav_subjects:
                             selectedFragment = new SubjectsFragment();
                             break;
                         case R.id.nav_settings:
-                            //selectedFragment = new HomeFragment();
+                            selectedFragment = new SettingsFragment();
                             break;
                     }
 
@@ -89,8 +95,13 @@ public class MainActivity extends AppCompatActivity {
         mDifficulty.add("easy");
         mDifficultyLvl.add(10);
         mDifficultyTime.add("10 minutes");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initRecyclerView();
+            }
+        }, 10);
 
-        initRecyclerView();
     }
 
     private void initRecyclerView(){
