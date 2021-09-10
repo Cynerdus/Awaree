@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent intent;
                 if (firstTime) { // TODO variabila care se salveaza pe system care determina daca e logat sau nu, si daca e prima oara cand intra in app
                     intent = new Intent(SplashScreenActivity.this, IntroductionActivity.class);
-                }else if(firstTime){
+                }else if(true){
                     intent = new Intent(SplashScreenActivity.this, Login.class);
                 } else {
                     intent = new Intent(SplashScreenActivity.this, MainActivity.class);

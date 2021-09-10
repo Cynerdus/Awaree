@@ -10,5 +10,5 @@
         android:id="@+id/main"
         android:name="com.awareeTeam.awaree.Main"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_home" />
 </navigation>

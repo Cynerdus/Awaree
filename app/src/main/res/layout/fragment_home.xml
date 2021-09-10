@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Main">
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navBar"
-        app:backgroundTint="@color/Jet"
-        app:itemIconTint="@color/Snow"
-        app:itemRippleColor="@color/Light_Gray"
-        app:itemTextColor="@color/Snow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="72dp" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"

@@ -1,8 +1,10 @@
 package com.awareeTeam.awaree;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Greeting the user
         username = "Vasi";
-        //BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
         //NavController navController = Navigation.findNavController(this, R.id.nav_main);
         //AppBarConfiguration appBarConfiguration = AppBarConfiguration(R.id.mainActivity);
         //NavigationUI.setupWithNavController(bottomNavigationView, navController);
@@ -44,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
         initHomework();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    return false;
+                }
+            };
 
     private void initHomework(){
 
