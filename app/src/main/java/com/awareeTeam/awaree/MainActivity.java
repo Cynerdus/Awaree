@@ -2,13 +2,11 @@ package com.awareeTeam.awaree;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +21,20 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    //vars
+    //vars for homework
     private ArrayList<String> mClassNames = new ArrayList<>();
     private ArrayList<String> mDifficulty = new ArrayList<>();
     private ArrayList<Integer> mDifficultyLvl = new ArrayList<>();
     private ArrayList<String> mDifficultyTime = new ArrayList<>();
+    //vars for subjects
+    private ArrayList<String> mSubjectNames = new ArrayList<>();
+    private ArrayList<String> mSubjectCategory = new ArrayList<>();
+    private ArrayList<Integer> mCredits = new ArrayList<>();
+    private ArrayList<Integer> mCoursesNumber = new ArrayList<>();
+    private ArrayList<Integer> mSeminariesNumber = new ArrayList<>();
+    private ArrayList<Integer> mLabsNumber = new ArrayList<>();
+    private ArrayList<Boolean> isExam = new ArrayList<>();
+
     private TextView greet;
     private String username;
 
@@ -35,25 +42,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Opened activity");
+
         //Greeting the user
         //username = "Vasi";
         //greet = findViewById(R.id.greeting);
         //greet.setText("Welcome back " + username);
 
-        Log.d(TAG, "onCreate: Set greeting");
         BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
-
-
-
-
-        Log.d(TAG, "onCreate: initialised homework");
         initHomework();
+        Log.d(TAG, "onCreate: initialised homework");
+
     }
 
+    //Switch between views
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -61,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()){
                         case R.id.nav_home:
-                            Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
                             selectedFragment = new DashboardFragment();
                             initHomework();
                             break;
                         case R.id.nav_subjects:
                             selectedFragment = new SubjectsFragment();
+                            initSubjects();
                             break;
                         case R.id.nav_settings:
                             selectedFragment = new SettingsFragment();
@@ -79,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
+    // initialise homework
+    // TODO make connections with the database
     private void initHomework(){
 
         mClassNames.add("Physics homework");
@@ -98,15 +104,61 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                initRecyclerView();
+                initRecyclerViewHw();
             }
         }, 10);
 
     }
 
-    private void initRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime);
+    private void initRecyclerViewHw(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_hw);
+        RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+
+    //initialise subjects
+    // TODO make connections with the database
+    private void initSubjects(){
+
+
+        mSubjectNames.add("Algebra");
+        mSubjectCategory.add("Maths");
+        mCredits.add(5);
+        mCoursesNumber.add(3);
+        mSeminariesNumber.add(2);
+        mLabsNumber.add(0);
+        isExam.add(true);
+
+        mSubjectNames.add("Calculus");
+        mSubjectCategory.add("Maths");
+        mCredits.add(5);
+        mCoursesNumber.add(3);
+        mSeminariesNumber.add(2);
+        mLabsNumber.add(0);
+        isExam.add(true);
+
+        mSubjectNames.add("Physics");
+        mSubjectCategory.add("Sciences");
+        mCredits.add(5);
+        mCoursesNumber.add(3);
+        mSeminariesNumber.add(2);
+        mLabsNumber.add(0);
+        isExam.add(true);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initRecyclerViewSj();
+            }
+        }, 10);
+
+    }
+
+    private void initRecyclerViewSj(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_sj);
+        RecyclerViewAdapterSj adapter = new RecyclerViewAdapterSj(this, mSubjectNames, mSubjectCategory, mCredits, mCoursesNumber, mSeminariesNumber, mLabsNumber, isExam);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

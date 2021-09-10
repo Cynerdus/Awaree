@@ -44,13 +44,14 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:progress="25"
-                app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_view_hw"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                android:id="@+id/recycler_view_hw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

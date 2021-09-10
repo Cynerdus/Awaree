@@ -9,7 +9,7 @@
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_settings.xml" value="0.271875" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_subjects.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/layout_homework.xml" value="0.2713541666666667" />
-        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/layout_subject.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/layout_subject.xml" value="0.4" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/menu/bottom_navigation.xml" value="0.2713541666666667" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/font/poppins.xml" value="0.1436936936936937" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_account_setup.xml" value="0.16306306306306306" />
@@ -20,7 +20,6 @@
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_splash_screen.xml" value="0.171875" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_login.xml" value="0.18" />
         <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/activity_startup_register.xml" value="0.22" />
-        <entry key="..\:/cleopatra/Hackathons/Awaree/app/src/main/res/layout/layout_subject.xml" value="0.10945945945945947" />
       </map>
     </option>
   </component>

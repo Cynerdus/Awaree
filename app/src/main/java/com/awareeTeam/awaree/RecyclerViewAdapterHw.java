@@ -13,9 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdapterHw.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<String> mClassNames = new ArrayList<>();
@@ -24,7 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mDifficultyTime = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mClassNames, ArrayList<String> mDifficulty, ArrayList<Integer> mDifficultyLvl, ArrayList<String> mDifficultyTime) {
+    public RecyclerViewAdapterHw(Context mContext, ArrayList<String> mClassNames, ArrayList<String> mDifficulty, ArrayList<Integer> mDifficultyLvl, ArrayList<String> mDifficultyTime) {
         this.mClassNames = mClassNames;
         this.mDifficulty = mDifficulty;
         this.mDifficultyLvl = mDifficultyLvl;
@@ -50,7 +52,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: "+ mClassNames.get(position));
-                Toast.makeText(mContext, mClassNames.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, mClassNames.get(position), Toast.LENGTH_SHORT).show();
+                Snackbar.make(v.findViewById(R.id.coordinatorlayout), mClassNames.get(position),
+                        Snackbar.LENGTH_SHORT)
+                        .show();
             }
         });
     }

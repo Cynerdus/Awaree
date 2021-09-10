@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="128dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_marginStart="32dp"
@@ -26,15 +27,15 @@
 
             <TextView
                 android:id="@+id/creditsNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="96dp"
+                android:layout_height="48dp"
                 android:gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 android:fontFamily="@font/poppinssemibold"
                 android:text="5 CRD"
                 android:background="@drawable/background"
@@ -50,7 +51,7 @@
                 android:layout_weight="0">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/subjectType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
@@ -60,16 +61,17 @@
                     android:textAlignment="textStart"
                     android:textColor="@color/BottomBar"
                     android:textSize="14sp"/>
+
                 <TextView
                     android:id="@+id/subjectName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
-                    android:gravity="center"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppinsbold"
+                    android:gravity="center"
+                    android:paddingEnd="8dp"
+                    android:text="Physics"
                     android:textAlignment="viewStart"
-                    android:text="Physics Homework"
                     android:textColor="@color/Jet"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -80,12 +82,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
