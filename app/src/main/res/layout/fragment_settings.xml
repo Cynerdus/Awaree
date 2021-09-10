@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="aren't you curios about what here but in blue"
+        android:text="aren't you curios about what's in here but in blue"
         android:textColor="@color/Teal_Blue"/>
 
 
