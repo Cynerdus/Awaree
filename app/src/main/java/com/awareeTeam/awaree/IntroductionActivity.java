@@ -2,7 +2,9 @@ package com.awareeTeam.awaree;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
@@ -70,6 +72,11 @@ public class IntroductionActivity extends AppCompatActivity {
                         fade_out.setDuration(1300);
                         image.startAnimation(fade_out);
                         quote.startAnimation(fade_out);
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("seenIntroduction", true);
+                        editor.apply();
 
                         new Handler().postDelayed(new Runnable() {
                             @Override

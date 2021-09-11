@@ -3,11 +3,14 @@ package com.awareeTeam.awaree;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -97,6 +100,11 @@ public class Login extends AppCompatActivity {
                                         emailError.setVisibility(View.INVISIBLE);
                                         passwordError.setVisibility(View.INVISIBLE);
                                         Toast.makeText(Login.this, "Welcome!", Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putBoolean("loginStatus", true);
+                                        editor.apply();
 
                                         new Handler().postDelayed(new Runnable() {
                                             @Override
