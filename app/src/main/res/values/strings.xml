@@ -21,4 +21,10 @@
     <string name="question_04">Participi la activității facultative?</string>
     <string name="answer">Răspuns</string>
     <string name="welcome_back">Bine ai revenit</string>
+
+    <string name="courses">Cursuri</string>
+    <string name="seminaries">Seminarii</string>
+    <string name="labs">Laboratoare</string>
+    <string name="exam_true">Examen</string>
+    <string name="exam_false">Verificare</string>
 </resources>

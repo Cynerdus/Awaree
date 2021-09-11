@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer> mCoursesNumber = new ArrayList<>();
     private ArrayList<Integer> mSeminariesNumber = new ArrayList<>();
     private ArrayList<Integer> mLabsNumber = new ArrayList<>();
-    private ArrayList<Boolean> isExam = new ArrayList<>();
+    private ArrayList<Boolean> mIsExam = new ArrayList<>();
 
     private TextView greet;
     private String username;
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         mDifficulty.add("easy");
         mDifficultyLvl.add(10);
         mDifficultyTime.add("10 minutes");
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerViewHw(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view_hw);
+        recyclerView.setNestedScrollingEnabled(false);
         RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         mCoursesNumber.add(3);
         mSeminariesNumber.add(2);
         mLabsNumber.add(0);
-        isExam.add(true);
+        mIsExam.add(true);
 
         mSubjectNames.add("Calculus");
         mSubjectCategory.add("Maths");
@@ -137,15 +139,15 @@ public class MainActivity extends AppCompatActivity {
         mCoursesNumber.add(3);
         mSeminariesNumber.add(2);
         mLabsNumber.add(0);
-        isExam.add(true);
+        mIsExam.add(true);
 
-        mSubjectNames.add("Physics");
-        mSubjectCategory.add("Sciences");
-        mCredits.add(5);
-        mCoursesNumber.add(3);
-        mSeminariesNumber.add(2);
-        mLabsNumber.add(0);
-        isExam.add(true);
+        mSubjectNames.add("Mecanica");
+        mSubjectCategory.add("Optionale");
+        mCredits.add(3);
+        mCoursesNumber.add(1);
+        mSeminariesNumber.add(0);
+        mLabsNumber.add(1);
+        mIsExam.add(false);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -158,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerViewSj(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view_sj);
-        RecyclerViewAdapterSj adapter = new RecyclerViewAdapterSj(this, mSubjectNames, mSubjectCategory, mCredits, mCoursesNumber, mSeminariesNumber, mLabsNumber, isExam);
+        recyclerView.clearDisappearingChildren();
+        RecyclerViewAdapterSj adapter = new RecyclerViewAdapterSj(this, mSubjectNames, mSubjectCategory, mCredits, mCoursesNumber, mSeminariesNumber, mLabsNumber, mIsExam);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
