@@ -29,10 +29,11 @@ public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdap
     private ArrayList<String> mDifficulty = new ArrayList<>();
     private ArrayList<Integer> mDifficultyLvl = new ArrayList<>();
     private ArrayList<String> mDifficultyTime = new ArrayList<>();
+    private ArrayList<String> mPriority = new ArrayList<>();
     private Context mContext;
 
 
-    public RecyclerViewAdapterHw(Context mContext, ArrayList<String> mClassNames, ArrayList<String> mDifficulty, ArrayList<Integer> mDifficultyLvl, ArrayList<String> mDifficultyTime) {
+    public RecyclerViewAdapterHw(Context mContext, ArrayList<String> mClassNames, ArrayList<String> mDifficulty, ArrayList<Integer> mDifficultyLvl, ArrayList<String> mDifficultyTime, ArrayList<String> mPriority) {
         this.mClassNames = mClassNames;
         this.mDifficulty = mDifficulty;
         this.mDifficultyLvl = mDifficultyLvl;
@@ -68,8 +69,6 @@ public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdap
                     holder.params.height = 896;
                     dropped = true;
                 }
-                //holder.params.height = 768;
-                //holder.parentLayout.setLayoutParams(new RelativeLayout.LayoutParams(holder.params));
             }
 
         });

@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mDifficulty = new ArrayList<>();
     private ArrayList<Integer> mDifficultyLvl = new ArrayList<>();
     private ArrayList<String> mDifficultyTime = new ArrayList<>();
+    private ArrayList<String> mPriority = new ArrayList<>();
     //vars for subjects
     private ArrayList<String> mSubjectNames = new ArrayList<>();
     private ArrayList<String> mSubjectCategory = new ArrayList<>();
@@ -52,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
-        initHomework();
-        Log.d(TAG, "onCreate: initialised homework");
 
+        initHomework();
+        connectionWithDatabase();
+        Log.d(TAG, "onCreate: initialised homework");
     }
 
     //Switch between views
@@ -91,16 +98,19 @@ public class MainActivity extends AppCompatActivity {
         mDifficulty.add("medium");
         mDifficultyLvl.add(30);
         mDifficultyTime.add("30 minutes");
+        mPriority.add("High");
 
         mClassNames.add("Maths");
         mDifficulty.add("hard");
         mDifficultyLvl.add(70);
         mDifficultyTime.add("50 minutes");
+        mPriority.add("Medium");
 
         mClassNames.add("English");
         mDifficulty.add("easy");
         mDifficultyLvl.add(10);
         mDifficultyTime.add("10 minutes");
+        mPriority.add("Low");
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerViewHw(){
         RecyclerView recyclerView = findViewById(R.id.recycler_view_hw);
         recyclerView.setNestedScrollingEnabled(false);
-        RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime);
+        RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime, mPriority);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -155,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 initRecyclerViewSj();
             }
         }, 10);
-
     }
 
     private void initRecyclerViewSj(){
@@ -164,5 +173,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerViewAdapterSj adapter = new RecyclerViewAdapterSj(this, mSubjectNames, mSubjectCategory, mCredits, mCoursesNumber, mSeminariesNumber, mLabsNumber, mIsExam);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void connectionWithDatabase(){
+
     }
 }

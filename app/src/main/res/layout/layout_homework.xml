@@ -105,6 +105,7 @@
         <com.google.android.material.chip.ChipGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:singleLine="true"
             android:layout_weight="0">
 
             <com.google.android.material.chip.Chip
@@ -124,6 +125,14 @@
                 android:layout_height="wrap_content"
                 android:text="Set Alarm"
                 app:chipIcon="@drawable/action_alarm" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_done"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                app:chipIcon="@drawable/action_done" />
 
         </com.google.android.material.chip.ChipGroup>
 

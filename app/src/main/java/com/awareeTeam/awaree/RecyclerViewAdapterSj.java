@@ -41,6 +41,62 @@ public class RecyclerViewAdapterSj extends RecyclerView.Adapter<RecyclerViewAdap
         this.mContext = mContext;
     }
 
+    public ArrayList<String> getmSubjectNames() {
+        return mSubjectNames;
+    }
+
+    public void setmSubjectNames(ArrayList<String> mSubjectNames) {
+        this.mSubjectNames = mSubjectNames;
+    }
+
+    public ArrayList<String> getmSubjectCategory() {
+        return mSubjectCategory;
+    }
+
+    public void setmSubjectCategory(ArrayList<String> mSubjectCategory) {
+        this.mSubjectCategory = mSubjectCategory;
+    }
+
+    public ArrayList<Integer> getmCredits() {
+        return mCredits;
+    }
+
+    public void setmCredits(ArrayList<Integer> mCredits) {
+        this.mCredits = mCredits;
+    }
+
+    public ArrayList<Integer> getmCoursesNumber() {
+        return mCoursesNumber;
+    }
+
+    public void setmCoursesNumber(ArrayList<Integer> mCoursesNumber) {
+        this.mCoursesNumber = mCoursesNumber;
+    }
+
+    public ArrayList<Integer> getmSeminariesNumber() {
+        return mSeminariesNumber;
+    }
+
+    public void setmSeminariesNumber(ArrayList<Integer> mSeminariesNumber) {
+        this.mSeminariesNumber = mSeminariesNumber;
+    }
+
+    public ArrayList<Integer> getmLabsNumber() {
+        return mLabsNumber;
+    }
+
+    public void setmLabsNumber(ArrayList<Integer> mLabsNumber) {
+        this.mLabsNumber = mLabsNumber;
+    }
+
+    public ArrayList<Boolean> getmIsExam() {
+        return mIsExam;
+    }
+
+    public void setmIsExam(ArrayList<Boolean> mIsExam) {
+        this.mIsExam = mIsExam;
+    }
+
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_subject, parent, false);
         ViewHolder holder = new ViewHolder(view);
