@@ -1,6 +1,9 @@
 package com.awareeTeam.awaree;
 
+import static com.google.android.material.math.MathUtils.lerp;
+
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.math.MathUtils;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdapterHw.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
-    private boolean isScrollEnabled = true;
     private boolean dropped = false;
 
     private ArrayList<String> mClassNames = new ArrayList<>();
@@ -50,23 +54,42 @@ public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called.");
+        holder.dropDown.setVisibility(View.GONE);
         holder.params.height = 420;
+        dropped = false;
+        int time = Integer.parseInt(mDifficultyTime.get(position));
+        int color;
+        int green = R.color.Persian_Green;
+        int yellow = R.color.Orange_Yellow_Crayola;
+        int red = R.color.NiceRed;
 
         holder.className.setText(mClassNames.get(position));
-        holder.difficulty.setProgress(mDifficultyLvl.get(position));
         holder.difficultyLvl.setText("Difficulty: " + mDifficulty.get(position));
-        holder.difficultyTime.setText(mDifficultyTime.get(position));
+        if (time <= 30){
+            color = green;
+        } else if (time <= 60){
+            color = yellow;
+        } else {
+            color = red;
+        }
+        int progress = (int) lerp(10, 120, time)/100;
+        Log.d(TAG, "onBindViewHolder: " + progress);
+        holder.difficulty.setProgressTintList(AppCompatResources.getColorStateList(mContext, color));
+        holder.difficultyTime.setTextColor(AppCompatResources.getColorStateList(mContext, color));
+        holder.difficulty.setProgress(progress);
+        holder.difficultyTime.setText(mDifficultyTime.get(position) + " minutes");
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + mClassNames.get(position));
+                Log.d(TAG, "onClick: dropped is " + dropped);
                 if (dropped){
                     holder.dropDown.setVisibility(View.GONE);
                     holder.params.height = 420;
                     dropped = false;
                 }else{
                     holder.dropDown.setVisibility(View.VISIBLE);
-                    holder.params.height = 896;
+                    holder.params.height = 850;
                     dropped = true;
                 }
             }

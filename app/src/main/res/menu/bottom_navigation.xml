@@ -12,8 +12,8 @@
         android:icon="@drawable/subjects_nav"
         android:iconTint="@color/Snow"/>
     <item
-        android:id="@+id/nav_settings"
-        android:title="Settings"
-        android:icon="@drawable/settings_nav"
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile_nav"
         android:iconTint="@color/Snow" />
 </menu>

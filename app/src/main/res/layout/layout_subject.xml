@@ -16,7 +16,7 @@
     <LinearLayout
         android:id="@+id/main_info"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="70dp"
         android:layout_gravity="top"
         android:layout_weight="0"
         android:orientation="horizontal">
@@ -40,7 +40,7 @@
             android:textSize="14sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:layout_weight="0"
@@ -53,23 +53,23 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/poppinssemibold"
                 android:gravity="bottom"
-                android:text="TextView"
+                android:text="Educatie fizica"
                 android:textAlignment="textStart"
                 android:textColor="@color/BottomBar"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/subjectName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppinsbold"
                 android:gravity="center"
                 android:paddingEnd="8dp"
-                android:text="Physics"
+                android:text="Sport"
                 android:textAlignment="viewStart"
                 android:textColor="@color/Jet"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>

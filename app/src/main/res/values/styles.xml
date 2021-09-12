@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/Jet</item>
         <item name="colorPrimaryDark">@color/Indigo_Dye</item>
-        <item name="colorAccent">@color/Light_Gray</item>
+        <item name="colorAccent">@color/Teal_Blue</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">

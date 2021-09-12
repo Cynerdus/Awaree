@@ -106,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:singleLine="true"
+            style="@style/Widget.MaterialComponents.ChipGroup"
             android:layout_weight="0">
 
             <com.google.android.material.chip.Chip
@@ -150,29 +151,29 @@
             android:id="@+id/priority_chip"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:singleSelection="true"
-            android:layout_weight="0">
+            android:layout_weight="0"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_low"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Low"/>
+                android:text="Low" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_medium"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium"/>
+                android:text="Medium" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_high"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="High"/>
+                android:text="High" />
         </com.google.android.material.chip.ChipGroup>
 
     </LinearLayout>

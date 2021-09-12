@@ -1,5 +1,9 @@
 package com.awareeTeam.awaree;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -10,8 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.security.auth.Subject;
+import java.util.concurrent.BlockingDeque;
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
@@ -27,7 +30,7 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceSubjects = mDatabase.getReference("Profiles");
+        mReferenceSubjects = mDatabase.getReference("Subjects");
     }
 
     public void readSubjects(final DataStatus dataStatus){
@@ -38,16 +41,18 @@ public class FirebaseDatabaseHelper {
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()){
                     keys.add(keyNode.getKey());
+                    Log.d(TAG, "onDataChange: " + keyNode.getKey());
                     Subject subject = keyNode.getValue(Subject.class);
-                    subjects.add(subjects);
+                    subjects.add(subject);
                 }
                 dataStatus.DataIsLoaded(subjects, keys);
+                Log.d(TAG, "onDataChange: data is loaded");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 }

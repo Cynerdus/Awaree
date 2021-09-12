@@ -15,16 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //private RecyclerView mRecyclerView;
 
     //vars for homework
     private ArrayList<String> mClassNames = new ArrayList<>();
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
 
         initHomework();
-        connectionWithDatabase();
         Log.d(TAG, "onCreate: initialised homework");
     }
 
@@ -77,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_subjects:
                             selectedFragment = new SubjectsFragment();
-                            initSubjects();
+                            initRecyclerViewSj();
                             break;
-                        case R.id.nav_settings:
+                        case R.id.nav_profile:
                             selectedFragment = new SettingsFragment();
                             break;
                     }
@@ -97,19 +94,19 @@ public class MainActivity extends AppCompatActivity {
         mClassNames.add("Physics homework");
         mDifficulty.add("medium");
         mDifficultyLvl.add(30);
-        mDifficultyTime.add("30 minutes");
+        mDifficultyTime.add("30");
         mPriority.add("High");
 
         mClassNames.add("Maths");
         mDifficulty.add("hard");
         mDifficultyLvl.add(70);
-        mDifficultyTime.add("50 minutes");
+        mDifficultyTime.add("120");
         mPriority.add("Medium");
 
         mClassNames.add("English");
         mDifficulty.add("easy");
-        mDifficultyLvl.add(10);
-        mDifficultyTime.add("10 minutes");
+        mDifficultyLvl.add(15);
+        mDifficultyTime.add("15");
         mPriority.add("Low");
 
         new Handler().postDelayed(new Runnable() {
@@ -129,53 +126,39 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-    //initialise subjects
-    // TODO make connections with the database
-    private void initSubjects(){
-
-
-        mSubjectNames.add("Algebra");
-        mSubjectCategory.add("Maths");
-        mCredits.add(5);
-        mCoursesNumber.add(3);
-        mSeminariesNumber.add(2);
-        mLabsNumber.add(0);
-        mIsExam.add(true);
-
-        mSubjectNames.add("Calculus");
-        mSubjectCategory.add("Maths");
-        mCredits.add(5);
-        mCoursesNumber.add(3);
-        mSeminariesNumber.add(2);
-        mLabsNumber.add(0);
-        mIsExam.add(true);
-
-        mSubjectNames.add("Mecanica");
-        mSubjectCategory.add("Optionale");
-        mCredits.add(3);
-        mCoursesNumber.add(1);
-        mSeminariesNumber.add(0);
-        mLabsNumber.add(1);
-        mIsExam.add(false);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initRecyclerViewSj();
-            }
-        }, 10);
-    }
-
+    //initialise subject view
     private void initRecyclerViewSj(){
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_sj);
-        recyclerView.clearDisappearingChildren();
-        RecyclerViewAdapterSj adapter = new RecyclerViewAdapterSj(this, mSubjectNames, mSubjectCategory, mCredits, mCoursesNumber, mSeminariesNumber, mLabsNumber, mIsExam);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
 
-    private void connectionWithDatabase(){
+        Log.d(TAG, "initRecyclerViewSj: found it");
+        new FirebaseDatabaseHelper().readSubjects(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Subject> subjects, List<String> keys) {
+                Log.d(TAG, "DataIsLoaded: not yet");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d(TAG, "run: delayed");
+                        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_sj);
+                        new RecyclerViewAdapterSj().setConfig(mRecyclerView, MainActivity.this, subjects, keys);
+                    }
+                }, 1);
+                Log.d(TAG, "DataIsLoaded: true");
+            }
 
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
     }
 }

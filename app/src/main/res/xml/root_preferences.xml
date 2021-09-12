@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:allowDividerAbove="false"
+        app:title="@string/app_header">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/settings_notification"
+            android:key="notifications"
+            android:title="@string/notifications_title" />
+        <ListPreference
+            android:key="language"
+            android:title="Languages"
+            app:useSimpleSummaryProvider="true"
+            android:entries="@array/languages"
+            android:icon="@drawable/setting_language"
+            android:entryValues="@array/languages" />
+        <Preference
+            android:key="logout"
+            android:title="@string/logout_title" />
+        <Preference
+            android:key="delete"
+            android:icon="@drawable/settings_delete"
+            android:title="@string/delete_title"
+            android:summary="@string/delete_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -12,89 +12,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
-
+import java.util.List;
+/*
 public class RecyclerViewAdapterSj extends RecyclerView.Adapter<RecyclerViewAdapterSj.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
-    private boolean dropped = false;
-
-    private ArrayList<String> mSubjectNames = new ArrayList<>();
-    private ArrayList<String> mSubjectCategory = new ArrayList<>();
-    private ArrayList<Integer> mCredits = new ArrayList<>();
-    private ArrayList<Integer> mCoursesNumber = new ArrayList<>();
-    private ArrayList<Integer> mSeminariesNumber = new ArrayList<>();
-    private ArrayList<Integer> mLabsNumber = new ArrayList<>();
-    private ArrayList<Boolean> mIsExam = new ArrayList<>();
+    private List<Subject> mSubject;
+    private List<String> mKeys;
     private Context mContext;
 
-    public RecyclerViewAdapterSj(Context mContext, ArrayList<String> mSubjectNames, ArrayList<String> mSubjectCategory, ArrayList<Integer> mCredits, ArrayList<Integer> mCoursesNumber, ArrayList<Integer> mSeminariesNumber, ArrayList<Integer> mLabsNumber, ArrayList<Boolean> mIsExam) {
-        this.mSubjectNames = mSubjectNames;
-        this.mSubjectCategory = mSubjectCategory;
-        this.mCredits = mCredits;
-        this.mCoursesNumber = mCoursesNumber;
-        this.mSeminariesNumber = mSeminariesNumber;
-        this.mLabsNumber = mLabsNumber;
-        this.mIsExam = mIsExam;
+    private boolean dropped = false;
+
+    public RecyclerViewAdapterSj(Context mContext, List<Subject> mSubject, List<String> mKeys) {
+        this.mSubject = mSubject;
+        this.mKeys = mKeys;
         this.mContext = mContext;
-    }
-
-    public ArrayList<String> getmSubjectNames() {
-        return mSubjectNames;
-    }
-
-    public void setmSubjectNames(ArrayList<String> mSubjectNames) {
-        this.mSubjectNames = mSubjectNames;
-    }
-
-    public ArrayList<String> getmSubjectCategory() {
-        return mSubjectCategory;
-    }
-
-    public void setmSubjectCategory(ArrayList<String> mSubjectCategory) {
-        this.mSubjectCategory = mSubjectCategory;
-    }
-
-    public ArrayList<Integer> getmCredits() {
-        return mCredits;
-    }
-
-    public void setmCredits(ArrayList<Integer> mCredits) {
-        this.mCredits = mCredits;
-    }
-
-    public ArrayList<Integer> getmCoursesNumber() {
-        return mCoursesNumber;
-    }
-
-    public void setmCoursesNumber(ArrayList<Integer> mCoursesNumber) {
-        this.mCoursesNumber = mCoursesNumber;
-    }
-
-    public ArrayList<Integer> getmSeminariesNumber() {
-        return mSeminariesNumber;
-    }
-
-    public void setmSeminariesNumber(ArrayList<Integer> mSeminariesNumber) {
-        this.mSeminariesNumber = mSeminariesNumber;
-    }
-
-    public ArrayList<Integer> getmLabsNumber() {
-        return mLabsNumber;
-    }
-
-    public void setmLabsNumber(ArrayList<Integer> mLabsNumber) {
-        this.mLabsNumber = mLabsNumber;
-    }
-
-    public ArrayList<Boolean> getmIsExam() {
-        return mIsExam;
-    }
-
-    public void setmIsExam(ArrayList<Boolean> mIsExam) {
-        this.mIsExam = mIsExam;
     }
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -105,38 +41,38 @@ public class RecyclerViewAdapterSj extends RecyclerView.Adapter<RecyclerViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Subject Subject = mSubject.get(mKeys.get(position));
         Log.d(TAG, "onBindViewHolder: called.");
         holder.dropDown1.setVisibility(View.GONE);
         holder.examType.setVisibility(View.GONE);
         holder.params.height = 256;
         dropped = false;
-
-        holder.subjectName.setText(mSubjectNames.get(position));
-        holder.subjectType.setText(mSubjectCategory.get(position));
-        holder.credits.setText(mCredits.get(position).toString() + " CRD");
-        if (mCoursesNumber.get(position) != 0){
-            holder.coursesNumber.setText(mCoursesNumber.get(position).toString());
+        holder.subjectName.setText(Subject.getSubjectName());
+        holder.subjectType.setText(mSubject.getSubjectCategory());
+        holder.credits.setText(mSubject.getCredits());
+        if (!mSubject.getCoursesNumber().equals("0")) {
+            holder.coursesNumber.setText(mSubject.getCoursesNumber());
             holder.courses.setVisibility(View.VISIBLE);
         }
-        if (mSeminariesNumber.get(position) != 0){
-            holder.seminariesNumber.setText(mSeminariesNumber.get(position).toString());
+        if (!mSubject.getSeminariesNumber().equals("0")){
+            holder.seminariesNumber.setText(mSubject.getSeminariesNumber());
             holder.seminaries.setVisibility(View.VISIBLE);
         }
-        if (mLabsNumber.get(position) != 0){
-            holder.labsNumber.setText(mLabsNumber.get(position).toString());
+        if (!mSubject.getLabsNumber().equals("0")){
+            holder.labsNumber.setText(mSubject.getLabsNumber());
             holder.labs.setVisibility(View.VISIBLE);
         }
-        if (mIsExam.get(position)) {
+        if (mSubject.getIsExam().equals("true")) {
             holder.examType.setText(R.string.exam_true);
             holder.examType.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.NiceRed)));
         } else {
             holder.examType.setText(R.string.exam_false);
         }
-
+        this.key = key;
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: "+ mSubjectNames.get(position));
+                //Log.d(TAG, "onClick: clicked on: "+ mSubjectNames.get(position));
                 if (dropped){
                     holder.dropDown1.setVisibility(View.GONE);
                     holder.examType.setVisibility(View.GONE);
@@ -161,26 +97,31 @@ public class RecyclerViewAdapterSj extends RecyclerView.Adapter<RecyclerViewAdap
 
     @Override
     public int getItemCount() {
-        return mSubjectNames.size();
+        return mSubject.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView subjectName;
-        TextView subjectType;
-        TextView credits;
-        TextView coursesNumber;
-        TextView seminariesNumber;
-        TextView labsNumber;
-        TextView examType;
-        LinearLayout dropDown1;
-        LinearLayout courses;
-        LinearLayout seminaries;
-        LinearLayout labs;
-        RelativeLayout parentLayout;
-        ViewGroup.LayoutParams params;
+        private TextView subjectName;
+        private TextView subjectType;
+        private TextView credits;
+        private TextView coursesNumber;
+        private TextView seminariesNumber;
+        private TextView labsNumber;
+        private TextView examType;
+        private LinearLayout dropDown1;
+        private LinearLayout courses;
+        private LinearLayout seminaries;
+        private LinearLayout labs;
+        private RelativeLayout parentLayout;
+        private ViewGroup.LayoutParams params;
+        private boolean dropped;
+        private String key;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             subjectName = itemView.findViewById(R.id.subjectName);
             subjectType = itemView.findViewById(R.id.subjectType);
             credits = itemView.findViewById(R.id.creditsNumber);
@@ -188,12 +129,142 @@ public class RecyclerViewAdapterSj extends RecyclerView.Adapter<RecyclerViewAdap
             seminariesNumber = itemView.findViewById(R.id.seminariesNumber);
             labsNumber = itemView.findViewById(R.id.labsNumber);
             examType = itemView.findViewById(R.id.examType);
-            parentLayout = itemView.findViewById(R.id.parent_layout_sj);
             dropDown1 = itemView.findViewById(R.id.dropdown_element_1);
             courses = itemView.findViewById(R.id.courses);
             seminaries = itemView.findViewById(R.id.seminaries);
             labs = itemView.findViewById(R.id.labs);
+            parentLayout = itemView.findViewById(R.id.parent_layout_sj);
             params = parentLayout.getLayoutParams();
+        }
+
+    }
+}
+*/
+public class RecyclerViewAdapterSj{
+    //private RecyclerView recyclerView;
+    private Context mContext;
+    private SubjectsAdapter mSubjectsAdapter;
+
+    public void setConfig(RecyclerView recyclerView, Context context, List<Subject> subject, List<String> keys){
+        mContext = context;
+        mSubjectsAdapter = new SubjectsAdapter(subject, keys);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new SubjectsAdapter(subject, keys));
+    }
+
+    class SubjectsItemView extends RecyclerView.ViewHolder{
+
+        private TextView subjectName;
+        private TextView subjectType;
+        private TextView credits;
+        private TextView coursesNumber;
+        private TextView seminariesNumber;
+        private TextView labsNumber;
+        private TextView examType;
+        private LinearLayout dropDown1;
+        private LinearLayout courses;
+        private LinearLayout seminaries;
+        private LinearLayout labs;
+        private RelativeLayout parentLayout;
+        private ViewGroup.LayoutParams params;
+        private boolean dropped;
+        private String key;
+
+
+        public SubjectsItemView(@NonNull ViewGroup parent) {
+            super(LayoutInflater.from(mContext).inflate(R.layout.layout_subject, parent, false));
+
+            subjectName = itemView.findViewById(R.id.subjectName);
+            subjectType = itemView.findViewById(R.id.subjectType);
+            credits = itemView.findViewById(R.id.creditsNumber);
+            coursesNumber = itemView.findViewById(R.id.coursesNumber);
+            seminariesNumber = itemView.findViewById(R.id.seminariesNumber);
+            labsNumber = itemView.findViewById(R.id.labsNumber);
+            examType = itemView.findViewById(R.id.examType);
+            dropDown1 = itemView.findViewById(R.id.dropdown_element_1);
+            courses = itemView.findViewById(R.id.courses);
+            seminaries = itemView.findViewById(R.id.seminaries);
+            labs = itemView.findViewById(R.id.labs);
+            parentLayout = itemView.findViewById(R.id.parent_layout_sj);
+            params = parentLayout.getLayoutParams();
+        }
+        public void bind(Subject subject, String key){
+            dropDown1.setVisibility(View.GONE);
+            examType.setVisibility(View.GONE);
+            params.height = 280;
+            dropped = false;
+
+            subjectName.setText(subject.getSubjectName());
+            subjectType.setText(subject.getSubjectCategory());
+            credits.setText(subject.getCredits() + " CRD");
+            if (!subject.getCoursesNumber().equals("0")) {
+                coursesNumber.setText(subject.getCoursesNumber());
+                courses.setVisibility(View.VISIBLE);
+            }
+            if (!subject.getSeminariesNumber().equals("0")){
+                seminariesNumber.setText(subject.getSeminariesNumber());
+                seminaries.setVisibility(View.VISIBLE);
+            }
+            if (!subject.getLabsNumber().equals("0")){
+                labsNumber.setText(subject.getLabsNumber());
+                labs.setVisibility(View.VISIBLE);
+            }
+            if (subject.getIsExam().equals("true")) {
+                examType.setText(R.string.exam_true);
+                examType.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.NiceRed)));
+            } else {
+                examType.setText(R.string.exam_false);
+            }
+
+            parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (dropped){
+                        dropDown1.setVisibility(View.GONE);
+                        examType.setVisibility(View.GONE);
+                        params.height = 280;
+                        dropped = false;
+                    }else{
+                        dropDown1.setVisibility(View.VISIBLE);
+                        examType.setVisibility(View.VISIBLE);
+                        params.height = 768;
+                        dropped = true;
+                    }
+
+                }
+            });
+            examType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "exam", Toast.LENGTH_SHORT).show();
+                }
+            });
+            this.key = key;
+        }
+    }
+    class SubjectsAdapter extends RecyclerView.Adapter<SubjectsItemView>{
+        private List<Subject> mSubjectList;
+        private List<String> mKeys;
+
+        public SubjectsAdapter(List<Subject> mSubjectList, List<String> mKeys) {
+            this.mSubjectList = mSubjectList;
+            this.mKeys = mKeys;
+        }
+
+        @NonNull
+        @Override
+        public SubjectsItemView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new SubjectsItemView(parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull SubjectsItemView holder, int position) {
+            holder.bind(mSubjectList.get(position), mKeys.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return mSubjectList.size();
         }
     }
 }
