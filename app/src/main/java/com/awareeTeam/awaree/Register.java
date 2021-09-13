@@ -7,7 +7,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -99,17 +98,17 @@ public class Register extends AppCompatActivity {
                                 }
                                 if (!foundTheDude) {
                                     if (usernameTaken) {
-                                        errorUsernameText.setText("Username taken.");
+                                        errorUsernameText.setText(R.string.taken_error);
                                         errorUsernameText.setVisibility(View.VISIBLE);
                                     } else if (usernameString.length() < 3) {
-                                        errorUsernameText.setText("Username length should be at least 3 characters.");
+                                        errorUsernameText.setText(R.string.user_short_error);
                                         errorUsernameText.setVisibility(View.VISIBLE);
                                     } else if (passwordString.length() < 6) { //pana aici avem email valid si username bun
-                                        errorPasswordText.setText("Password length should be over 5 characters.");
+                                        errorPasswordText.setText(R.string.pass_short_error);
                                         errorPasswordText.setVisibility(View.VISIBLE);
                                     } else {
                                         if (!passwordString.matches(".*\\d.*")) {
-                                            errorPasswordText.setText("Password should have at least one digit.");
+                                            errorPasswordText.setText(R.string.pass_num_error);
                                             errorPasswordText.setVisibility(View.VISIBLE);
                                         } else {
                                             //daca am ajuns aici, suntem bines

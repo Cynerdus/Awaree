@@ -4,7 +4,7 @@
 
     <item
         android:title="Settings"
-        android:icon="@drawable/settings_nav"
+        android:icon="@drawable/action_done"
         android:id="@+id/setting"
         app:showAsAction="always"/>
 </menu>

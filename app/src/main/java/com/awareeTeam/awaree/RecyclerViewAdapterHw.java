@@ -24,6 +24,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.math.MathUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdapterHw.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
@@ -34,6 +35,7 @@ public class RecyclerViewAdapterHw extends RecyclerView.Adapter<RecyclerViewAdap
     private ArrayList<Integer> mDifficultyLvl = new ArrayList<>();
     private ArrayList<String> mDifficultyTime = new ArrayList<>();
     private ArrayList<String> mPriority = new ArrayList<>();
+    private List<Homework> mHomework = new ArrayList<>();
     private Context mContext;
 
 

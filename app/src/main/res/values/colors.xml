@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimaryDark">#353535</color>
+    <color name="colorAccent">#284B63</color>
+    <color name="colorPrimary">#353535</color>
     <color name="Jet">#353535</color>
     <color name="Burnt_Sienna">#E76F51</color>
     <color name="Sandy_Brown">#F4A261</color>

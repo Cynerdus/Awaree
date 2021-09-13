@@ -49,6 +49,16 @@
         <item>Romanian</item>
         <item>English</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Errors -->
+    <string name="taken_error">Username taken.</string>
+    <string name="user_short_error">Username length should be at least 3 characters.</string>
+    <string name="pass_short_error">Password length should be over 5 characters.</string>
+    <string name="pass_num_error">Password should have at least one digit.</string>
+
+    <string name="homeworkTitle">Tema</string>
+    <string name="subject">Materie</string>
+    <string name="dueDate">Data de predare</string>
+    <string name="timeNeeded">Timp de lucrare</string>
+
 </resources>

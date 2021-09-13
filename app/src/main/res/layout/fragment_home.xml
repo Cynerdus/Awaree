@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Main">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_actionbutton" />
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -36,9 +46,10 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                style="@style/ProgressBarHomework"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/CircularDeterminateProgressBar"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                tools:progress="60"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"

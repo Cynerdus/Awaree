@@ -1,11 +1,14 @@
 package com.awareeTeam.awaree;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +16,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,20 +77,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.profile_settings, menu);
+
         super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Fragment selectedFragment = null;
-        switch (item.getItemId()){
-            case R.id.setting:
-                selectedFragment = new SettingsFragment();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-        return true;
     }
 }

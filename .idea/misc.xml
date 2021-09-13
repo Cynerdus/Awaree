@@ -7,12 +7,17 @@
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/action_calendar.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/background_small.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_default.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_login.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/button_pressed.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/circlebg.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/circularprogressbar.xml" value="0.28802083333333334" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2835897435897436" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_account_setup.xml" value="0.271875" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_main.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/activity_questions.xml" value="0.23489583333333333" />
-        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_home.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/dialog_homework.xml" value="0.271875" />
+        <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_home.xml" value="0.5370370370370371" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_profile.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_settings.xml" value="0.271875" />
         <entry key="..\:/Users/robik/AndroidStudioProjects/Awaree/app/src/main/res/layout/fragment_subjects.xml" value="0.264" />

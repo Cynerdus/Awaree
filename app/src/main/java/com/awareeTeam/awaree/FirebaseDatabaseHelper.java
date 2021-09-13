@@ -14,15 +14,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingDeque;
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReferenceSubjects;
+    private DatabaseReference mReferenceHomework;
     private List<Subject> subjects = new ArrayList<>();
+    private List<Homework> homeworks = new ArrayList<>();
+    private String user;
+    private String currentYear;
+    private String currentSemester;
+    private String profile;
 
     public interface DataStatus{
-        void DataIsLoaded(List<Subject> subjects, List<String> keys);
+        void DataIsLoadedSj(List<Subject> subjects, List<String> keys);
+        void DataIsLoadedHw(List<Homework> homeworks, List<String> keys);
         void DataIsInserted();
         void DataIsUpdated();
         void DataIsDeleted();
@@ -30,7 +36,12 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceSubjects = mDatabase.getReference("Subjects");
+        profile = "CTI";
+        currentYear = "Anul_1";
+        currentSemester = "Semestrul_1";
+        user = "https://awaree-ea116-default-rtdb.firebaseio.com/Specializations/"+profile+"/"+currentYear+"/"+currentSemester;
+        mReferenceSubjects = mDatabase.getReferenceFromUrl(user);
+        mReferenceHomework = mDatabase.getReference("Homeworks");
     }
 
     public void readSubjects(final DataStatus dataStatus){
@@ -45,8 +56,32 @@ public class FirebaseDatabaseHelper {
                     Subject subject = keyNode.getValue(Subject.class);
                     subjects.add(subject);
                 }
-                dataStatus.DataIsLoaded(subjects, keys);
-                Log.d(TAG, "onDataChange: data is loaded");
+                dataStatus.DataIsLoadedSj(subjects, keys);
+                Log.d(TAG, "onDataChange: data is loaded sj");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+    public void readHomework(final DataStatus dataStatus){
+        mReferenceHomework.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                homeworks.clear();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()){
+                    keys.add(keyNode.getKey());
+                    Log.d(TAG, "onDataChange: " + keyNode.getKey());
+                    Homework homework = keyNode.getValue(Homework.class);
+                    homeworks.add(homework);
+                }
+                dataStatus.DataIsLoadedHw(homeworks, keys);
+                Log.d(TAG, "onDataChange: data is loaded hw");
             }
 
             @Override
@@ -55,4 +90,6 @@ public class FirebaseDatabaseHelper {
             }
         });
     }
+
+
 }
