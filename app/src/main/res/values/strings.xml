@@ -55,10 +55,27 @@
     <string name="user_short_error">Username length should be at least 3 characters.</string>
     <string name="pass_short_error">Password length should be over 5 characters.</string>
     <string name="pass_num_error">Password should have at least one digit.</string>
+    <string name="empty_error">Trebuie sa introduci un titlu</string>
+    <string name="select_error">Selecteaza un obiect</string>
 
     <string name="homeworkTitle">Tema</string>
     <string name="subject">Materie</string>
     <string name="dueDate">Data de predare</string>
     <string name="timeNeeded">Timp de lucrare</string>
+    <string name="difficulty">Difficultate</string>
+    <string name="priority">Prioritate</string>
+    <string-array name="difficulties">
+        <item>Floare la ureche</item>
+        <item>Prea usor</item>
+        <item>Usor</item>
+        <item>Mediu</item>
+        <item>Greu</item>
+        <item>Imposibil</item>
+    </string-array>
+    <string-array name="priority">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 
 </resources>

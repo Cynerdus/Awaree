@@ -10,9 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,15 +22,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator;
+
 
 public class MainActivity extends AppCompatActivity {
     private ProgressBar progressIndicator;
     private FloatingActionButton fab;
+    private long backPressedTime;
+    private Toast backToast;
+    private int homeworkTotal;
 
 
     //vars for homework
@@ -56,9 +64,30 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
 
-        initHomework();
+        CircularProgressIndicator circularProgressIndicator = findViewById(R.id.progressBar);
+        int freeTime = 500;
+        int total = homeworkTotal+freeTime;
+        total = 1000;
+        //circularProgressIndicator.setMaxProgress(total);
+        //circularProgressIndicator.setCurrentProgress(homeworkTotal);
+
+        initRecyclerViewHw();
+
         Log.d(TAG, "onCreate: initialised homework");
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            super.onBackPressed();
+            return;
+        } else {
+            backToast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 
     //Switch between views
@@ -70,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new DashboardFragment();
-                            initHomework();
+                            initRecyclerViewHw();
                             break;
                         case R.id.nav_subjects:
                             selectedFragment = new SubjectsFragment();
@@ -87,52 +116,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-
-    // initialise homework
-    // TODO make connections with the database
-    private void initHomework(){
-
-        mClassNames.add("Physics homework");
-        mDifficulty.add("medium");
-        mDifficultyLvl.add(30);
-        mDifficultyTime.add("30");
-        mPriority.add("High");
-
-        mClassNames.add("Maths");
-        mDifficulty.add("hard");
-        mDifficultyLvl.add(70);
-        mDifficultyTime.add("120");
-        mPriority.add("Medium");
-
-        mClassNames.add("English");
-        mDifficulty.add("easy");
-        mDifficultyLvl.add(15);
-        mDifficultyTime.add("15");
-        mPriority.add("Low");
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initRecyclerViewHw();
-            }
-        }, 10);
-
-    }
-
-
-    private void initRecyclerViewHw(){
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_hw);
-        recyclerView.setNestedScrollingEnabled(false);
-        RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime, mPriority);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fab = findViewById(R.id.fab);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
-        fab.setOnClickListener(v -> openDialog());
-
-    }
-
-    private void openDialog() {HomeworkDialog.display(getSupportFragmentManager());}
+    /*public static MainActivity openDialog() {
+        CoordinatorLayout coordinatorLayout =
+        Snackbar.make(coordinatorLayout, "Homework created (jk it's not implemented yet)", BaseTransientBottomBar.LENGTH_SHORT)
+                .show();
+    }*/
 
     //initialise subject view
     private void initRecyclerViewSj(){
@@ -177,12 +165,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    /*private void initRecyclerViewHw(){
+    private void initRecyclerViewHw(){
 
         progressIndicator = findViewById(R.id.indicator);
         progressIndicator.setVisibility(View.VISIBLE);
         Log.d(TAG, "initRecyclerViewSj: found it");
-        new FirebaseDatabaseHelper().readSubjects(new FirebaseDatabaseHelper.DataStatus() {
+        new FirebaseDatabaseHelper().readHomework(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoadedSj(List<Subject> subjects, List<String> keys) {
 
@@ -194,12 +182,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Log.d(TAG, "run: delayed");
-                        RecyclerView recyclerView = findViewById(R.id.recycler_view_hw);
-                        recyclerView.setNestedScrollingEnabled(false);
-                        RecyclerViewAdapterHw adapter = new RecyclerViewAdapterHw(this, mClassNames, mDifficulty, mDifficultyLvl, mDifficultyTime, mPriority);
-                        recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_hw);
+                        mRecyclerView.setNestedScrollingEnabled(false);
+                        new RecyclerViewAdapterHw().setConfig(mRecyclerView, MainActivity.this, homework, keys);
                         progressIndicator.setVisibility(View.GONE);
+                        initFab();
+                        for (int i = 0; i < homework.size(); i++)
+                            homeworkTotal += Integer.parseInt(homework.get(i).getDuration());
                     }
                 }, 10);
             }
@@ -219,5 +208,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
+    private void initFab(){
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeworkDialog.display(getSupportFragmentManager());
+
+            }
+        });
+    }
 }

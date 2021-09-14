@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +26,10 @@ public class RecyclerViewAdapterSj{
     public void setConfig(RecyclerView recyclerView, Context context, List<Subject> subject, List<String> keys){
         mContext = context;
         mSubjectsAdapter = new SubjectsAdapter(subject, keys);
+        mSubjectsAdapter.setHasStableIds(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new SubjectsAdapter(subject, keys));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     class SubjectsItemView extends RecyclerView.ViewHolder{
@@ -132,6 +135,14 @@ public class RecyclerViewAdapterSj{
         @Override
         public SubjectsItemView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new SubjectsItemView(parent);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            if (position < mSubjectList.size()){
+                mSubjectList.get(position).getSubjectName();
+            }
+            return RecyclerView.NO_ID;
         }
 
         @Override

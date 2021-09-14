@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,12 +37,12 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        profile = "CTI";
+        profile = "CTI"; // TODO link users profile and semester/year when he logs in
         currentYear = "Anul_1";
         currentSemester = "Semestrul_1";
         user = "https://awaree-ea116-default-rtdb.firebaseio.com/Specializations/"+profile+"/"+currentYear+"/"+currentSemester;
         mReferenceSubjects = mDatabase.getReferenceFromUrl(user);
-        mReferenceHomework = mDatabase.getReference("Homeworks");
+        mReferenceHomework = mDatabase.getReference("Homeworks"); // TODO set a unique file for different users
     }
 
     public void readSubjects(final DataStatus dataStatus){
@@ -90,6 +91,14 @@ public class FirebaseDatabaseHelper {
             }
         });
     }
-
+    public void addHomework(Homework homework, final DataStatus dataStatus){
+        String key = mReferenceHomework.push().getKey();
+        mReferenceHomework.child(key).setValue(homework).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                dataStatus.DataIsInserted();
+            }
+        });
+    }
 
 }

@@ -16,7 +16,7 @@
             android:paddingEnd="16dp"
             android:paddingStart="6dp"
             app:contentInsetStartWithNavigation="0dp"
-            app:navigationIcon="@drawable/action_close" />
+            app:navigationIcon="@drawable/action_close"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,44 +31,121 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-
+                android:id="@+id/homeworkTitleLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="4dp"
                 android:hint="@string/homeworkTitle"
                 app:boxStrokeColor="@color/Indigo_Dye"
                 app:endIconMode="clear_text"
+                app:errorEnabled="true"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/homeworkTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:id="@+id/typeLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:hint="@string/subject">
+                android:layout_marginBottom="4dp"
+                app:errorEnabled="true">
 
                 <AutoCompleteTextView
                     android:id="@+id/subjectType"
+                    android:hint="@string/subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/subject">
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/homeworkTitle"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="196dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/dueDate"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dueDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/timeLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:hint="@string/timeNeeded"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/timeNeeded"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/difficultyLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:errorEnabled="true">
+
+                <AutoCompleteTextView
+                    android:id="@+id/difficultySubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/difficulty"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priorityLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:errorEnabled="true">
+
+                <AutoCompleteTextView
+                    android:id="@+id/prioritySubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/priority"
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

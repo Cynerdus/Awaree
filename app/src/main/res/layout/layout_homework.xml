@@ -54,6 +54,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_weight="0"
                     android:fontFamily="@font/poppinssemibold"
+                    android:scrollbars="none"
                     android:text="TextView"
                     android:textColor="@color/Ash_Gray"
                     android:textSize="12sp" />
@@ -84,6 +85,7 @@
                     android:layout_marginTop="28dp"
                     android:layout_weight="0"
                     android:fontFamily="@font/poppinssemibold"
+                    android:scrollbars="none"
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="@color/Ash_Gray"

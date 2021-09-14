@@ -10,5 +10,6 @@
         android:id="@+id/recycler_view_sj"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layoutAnimation="@anim/layout_anim"
         android:backgroundTint="@color/Jet"/>
 </FrameLayout>

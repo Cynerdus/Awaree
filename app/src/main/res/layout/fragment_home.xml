@@ -8,7 +8,9 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            app:tint="@color/Snow"
+            android:backgroundTint="@color/Indigo_Dye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -35,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="@string/welcome_back"
@@ -44,28 +46,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
+
+            <antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator
                 android:id="@+id/progressBar"
-                style="@style/CircularDeterminateProgressBar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                tools:progress="60"
-                android:layout_marginStart="32dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
-                android:progress="25"
-                app:layout_constraintBottom_toTopOf="@+id/recycler_view_hw"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/greeting" />
-
+                app:layout_constraintTop_toBottomOf="@+id/greeting"
+                app:progressColor="@color/NiceRed"
+                app:progressBackgroundColor="@color/Indigo_Dye"
+                app:textSize="32sp"
+                app:textColor="@color/NiceRed"
+                app:progressTextSuffix=" h"
+                app:progressStrokeWidth="16dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_hw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layoutAnimation="@anim/layout_anim"
                 android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar" />
