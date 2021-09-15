@@ -28,7 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator;
+//import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
 
-        CircularProgressIndicator circularProgressIndicator = findViewById(R.id.progressBar);
+        //CircularProgressIndicator circularProgressIndicator = findViewById(R.id.progressBar);
         int freeTime = 500;
         int total = homeworkTotal+freeTime;
         total = 1000;
@@ -183,12 +183,17 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         Log.d(TAG, "run: delayed");
                         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_hw);
-                        mRecyclerView.setNestedScrollingEnabled(false);
-                        new RecyclerViewAdapterHw().setConfig(mRecyclerView, MainActivity.this, homework, keys);
                         progressIndicator.setVisibility(View.GONE);
+                        mRecyclerView.setNestedScrollingEnabled(false);
+                        if (keys.get(0).isEmpty()){
+
+                        }else{
+                            new RecyclerViewAdapterHw().setConfig(mRecyclerView, MainActivity.this, homework, keys);
+                        }
                         initFab();
-                        for (int i = 0; i < homework.size(); i++)
-                            homeworkTotal += Integer.parseInt(homework.get(i).getDuration());
+                        for (int i = 0; i < homework.size(); i++) {
+                            //homeworkTotal += Integer.parseInt(homework.get(i).getDuration());
+                        }
                     }
                 }, 10);
             }

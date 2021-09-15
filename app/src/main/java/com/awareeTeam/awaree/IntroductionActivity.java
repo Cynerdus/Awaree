@@ -3,6 +3,7 @@ package com.awareeTeam.awaree;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
@@ -24,6 +25,9 @@ public class IntroductionActivity extends AppCompatActivity {
     private TextView quote;
     private int current_layout = 1, start_mark = 0;
     private float targetX, targetY;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String INTRODUCTION_VIEWED = "introductionViewed";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,12 @@ public class IntroductionActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Intent intent = new Intent(IntroductionActivity.this, Login.class);
+
+                                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putBoolean(INTRODUCTION_VIEWED, true);
+                                editor.apply();
+
                                 startActivity(intent);
                                 finish();
                             }

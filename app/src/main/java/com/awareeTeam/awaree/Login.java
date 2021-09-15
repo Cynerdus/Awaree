@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
@@ -31,6 +32,10 @@ public class Login extends AppCompatActivity {
     private Button loginButton;
     private EditText email, password;
     private TextView emailError, passwordError, passwordForgotten;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,8 +134,17 @@ public class Login extends AppCompatActivity {
                     });
                 }
 
+                // save the email and password to check them the next time he logs in
+                saveData();
             }
         });
+    }
+
+    public void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EMAIL, email.getText().toString());
+        editor.putString(PASSWORD, password.getText().toString());
     }
 
     private void forgotPassword() {
