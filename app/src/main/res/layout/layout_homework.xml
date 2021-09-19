@@ -11,86 +11,107 @@
     android:background="@drawable/background"
     android:backgroundTint="@color/BackgroundElement"
     android:elevation="8dp"
-    android:id="@+id/parent_layout_hw"><!-- 320 -->
+    android:id="@+id/parent_layout_hw">
 
 
     <LinearLayout
         android:id="@+id/main_component"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:background="@drawable/background"
         android:orientation="vertical"
-        app:rippleColor="@color/Ash_Gray"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:rippleColor="@color/Ash_Gray">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/className"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="0"
+                    android:layout_width="132dp"
+                    android:layout_height="63dp"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
                     android:fontFamily="@font/poppinsbold"
-                    android:text="Physics Homework"
+                    android:gravity="start|center"
+                    android:scrollbars="none"
+                    android:text="Physics"
                     android:textColor="@color/Jet"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/difficultyLvl"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="12dp"
-                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:alpha=".6"
                     android:fontFamily="@font/poppinssemibold"
+                    android:gravity="end|center"
                     android:scrollbars="none"
                     android:text="TextView"
-                    android:textColor="@color/Ash_Gray"
-                    android:textSize="12sp" />
+                    android:textColor="@color/Jet"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <ProgressBar
                     android:id="@+id/difficulty"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="160dp"
-                    android:layout_height="32dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="4dp"
                     android:backgroundTint="@color/Jet"
-                    android:progress="90"
+                    android:foregroundGravity="center"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progressbar"
                     android:progressTint="@color/Persian_Green" />
 
+
                 <TextView
+                    android:transitionName="time"
                     android:id="@+id/difficultyTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="28dp"
-                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:alpha=".9"
                     android:fontFamily="@font/poppinssemibold"
+                    android:gravity="center"
+                    android:paddingTop="2dp"
                     android:scrollbars="none"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textColor="@color/Ash_Gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                    android:textColor="@color/Snow"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -104,40 +125,46 @@
         android:padding="16dp"
         android:visibility="visible">
 
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleLine="true"
-            style="@style/Widget.MaterialComponents.ChipGroup"
-            android:layout_weight="0">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_calendar"
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
+            <com.google.android.material.chip.ChipGroup
+                style="@style/Widget.MaterialComponents.ChipGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppintshin"
-                android:text="Add to calendar"
+                android:layout_weight="0"
+                app:singleLine="false">
 
-                app:chipIcon="@drawable/action_calendar" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_calendar"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppintshin"
+                    android:text="Add to calendar"
+                    app:chipIcon="@drawable/action_calendar" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_alarm"
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set Alarm"
-                app:chipIcon="@drawable/action_alarm" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_alarm"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Alarm"
+                    app:chipIcon="@drawable/action_alarm" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_done"
-                style="@style/Widget.MaterialComponents.Chip.Action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Done"
-                app:chipIcon="@drawable/action_done" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_done"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    app:chipIcon="@drawable/action_done" />
 
-        </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start Timer"
+                    app:chipIcon="@drawable/action_timer"/>
+
+            </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/textView"

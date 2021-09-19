@@ -24,6 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class HomeworkDialog extends DialogFragment {
@@ -42,7 +43,6 @@ public class HomeworkDialog extends DialogFragment {
     private TextInputLayout timeLayout;
     private TextInputLayout difficultyLayout;
     private TextInputLayout priorityLayout;
-    private List<Subject> subjects;
     private int counter;
     private int hour;
     private int minutes;
@@ -135,7 +135,9 @@ public class HomeworkDialog extends DialogFragment {
                 hour = materialTimePicker.getHour();
                 minutes = materialTimePicker.getMinute();
                 if (minutes<10){
-                    timeS = "0"+minutes;
+                    timeS = String.format("0%s", minutes);
+                }else{
+                    timeS = Integer.toString(minutes);
                 }
                 timeNeeded.setText(hour+":"+timeS);
 
@@ -146,6 +148,7 @@ public class HomeworkDialog extends DialogFragment {
                     @Override
                     public void onPositiveButtonClick(Object selection) {
                         dateDue.setText(materialDatePicker.getHeaderText());
+                        Log.d(TAG, "onPositiveButtonClick: "+ materialDatePicker.getSelection());
                     }
                 });
 
@@ -164,7 +167,8 @@ public class HomeworkDialog extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         toolbar.setNavigationOnClickListener(v -> dismiss());
-        toolbar.setTitle("Some Title");
+        toolbar.setTitle("Create a homework");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.Snow));
         toolbar.inflateMenu(R.menu.profile_settings);
 
         toolbar.setOnMenuItemClickListener(item -> {
@@ -172,12 +176,15 @@ public class HomeworkDialog extends DialogFragment {
             counter = 0;
 
             Integer time = hour * 60 + minutes;
-            Log.d(TAG, "onViewCreated: "+time);
+            //Log.d(TAG, "onViewCreated: "+time);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yy");
+
 
             homework.setClassRef(subjectType.getText().toString());
             homework.setDifficulty(difficultySubject.getText().toString());
             homework.setPriority(prioritySubject.getText().toString());
             homework.setDuration(time.toString());
+            //homework.setDueDate(dateFormat.format(dateDue.getText().toString()));
 
             if (TextUtils.isEmpty(homeworkTitle.getText())){
                 homeworkTitleLayout.setError(getString(R.string.empty_error));
@@ -198,10 +205,7 @@ public class HomeworkDialog extends DialogFragment {
                 priorityLayout.setError(getString(R.string.select_error));
             } else { counter++; }
 
-            if (counter != 6){
-
-
-            } else {
+            if (counter == 6) {
                 new FirebaseDatabaseHelper().addHomework(homework, new FirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoadedSj(List<Subject> subjects, List<String> keys) {

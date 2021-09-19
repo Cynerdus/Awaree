@@ -54,7 +54,7 @@
                 android:fontFamily="@font/poppinssemibold"
                 android:gravity="bottom"
                 android:scrollbars="none"
-                android:text="Educatie fizica"
+                android:text="Informatica"
                 android:textAlignment="textStart"
                 android:textColor="@color/BottomBar"
                 android:textSize="14sp" />
@@ -68,10 +68,10 @@
                 android:gravity="center"
                 android:paddingEnd="8dp"
                 android:scrollbars="none"
-                android:text="Sport"
+                android:text="Utilizarea sistemelor de operare"
                 android:textAlignment="viewStart"
                 android:textColor="@color/Jet"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

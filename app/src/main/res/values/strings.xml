@@ -57,6 +57,14 @@
     <string name="pass_num_error">Password should have at least one digit.</string>
     <string name="empty_error">Trebuie sa introduci un titlu</string>
     <string name="select_error">Selecteaza un obiect</string>
+    <string name="no_hw">There\'s nothing here, please add a new homework</string>
+    <string name="email_error">Please enter your email address first.</string>
+    <string name="password_error">Please enter your password.</string>
+    <string name="pass_inc_error">Incorrect password.</string>
+    <string name="email_inv_error">Invalid email address.</string>
+    <string name="email_inex_error">Email not registered.</string>
+    <string name="user_error">Please enter a username.</string>
+    <string name="email_taken_error">Email address already registered.</string>
 
     <string name="homeworkTitle">Tema</string>
     <string name="subject">Materie</string>
@@ -64,6 +72,7 @@
     <string name="timeNeeded">Timp de lucrare</string>
     <string name="difficulty">Difficultate</string>
     <string name="priority">Prioritate</string>
+
     <string-array name="difficulties">
         <item>Floare la ureche</item>
         <item>Prea usor</item>
@@ -76,6 +85,20 @@
         <item>Low</item>
         <item>Medium</item>
         <item>High</item>
+    </string-array>
+    <string-array name="greetings">
+        <item>Welcome back, </item>
+        <item>Hello there, </item>
+    </string-array>
+
+    <string-array name="sortBy">
+        <item>Subject name</item>
+        <item>Credits</item>
+        <item>Exam type</item>
+    </string-array>
+    <string-array name="upDown">
+        <item>Ascending</item>
+        <item>Descending</item>
     </string-array>
 
 </resources>

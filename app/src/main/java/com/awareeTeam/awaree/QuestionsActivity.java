@@ -115,7 +115,6 @@ public class QuestionsActivity extends AppCompatActivity {
                 break;
         }
         reference.child(userID + "").child("series").setValue(serie);
-        Toast.makeText(QuestionsActivity.this, serie, Toast.LENGTH_SHORT).show();
         nextView();
     }
     public void configureQuestion03(){
@@ -125,7 +124,6 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 group = answer_03.getText().toString();
                 reference.child(userID + "").child("group").setValue(group);
-                Toast.makeText(QuestionsActivity.this, group, Toast.LENGTH_SHORT).show();
                 nextView();
             }
         });
@@ -138,7 +136,6 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 isVoluntar = true;
                 reference.child(userID + "").child("isVolunteer").setValue(isVoluntar);
-                Toast.makeText(QuestionsActivity.this, isVoluntar + " congratulations", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(QuestionsActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

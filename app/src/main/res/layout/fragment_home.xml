@@ -4,19 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:transitionName="shared_element_container"
     tools:context=".Main">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            app:tint="@color/Snow"
-            android:backgroundTint="@color/Indigo_Dye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_actionbutton" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        app:tint="@color/Snow"
+        android:backgroundTint="@color/Indigo_Dye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_actionbutton" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -55,7 +56,6 @@
                 app:cpbBackgroundColor="@color/Indigo_Dye"
                 app:cpbBackgroundWidth="16dp"
                 app:cpbProgressColor="@color/NiceRed"
-                app:cpbProgressValue="25"
                 app:cpbProgressWidth="16dp"
                 app:cpbState="clockwise"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +66,91 @@
                 android:id="@+id/recycler_view_hw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layoutAnimation="@anim/layout_anim"
                 android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionContainer" />
+
+            <TextView
+                android:id="@+id/noHw"
+                android:layout_width="269dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="128dp"
+                android:alpha=".7"
+                android:fontFamily="@font/poppinsbold"
+                android:text="@string/no_hw"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+            <TextView
+                android:id="@+id/freeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsbold"
+                android:text="8h"
+                android:textAlignment="center"
+                android:textColor="@color/Indigo_Dye"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/homeworkTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsbold"
+                android:text="3h"
+                android:textAlignment="center"
+                android:textColor="@color/NiceRed"
+                android:textSize="42sp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.666" />
+
+            <LinearLayout
+                android:id="@+id/descriptionContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:text="Homework"
+                    app:icon="@drawable/ic_homework"
+                    app:iconTint="@color/NiceRed" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:text="Free time"
+                    app:icon="@drawable/free_time"
+                    app:iconTint="@color/Indigo_Dye" />
+
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

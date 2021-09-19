@@ -94,6 +94,7 @@ public class RecyclerViewAdapterSj{
                 examType.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.NiceRed)));
             } else {
                 examType.setText(R.string.exam_false);
+                examType.setBackgroundTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.Indigo_Dye)));
             }
 
             parentLayout.setOnClickListener(new View.OnClickListener() {

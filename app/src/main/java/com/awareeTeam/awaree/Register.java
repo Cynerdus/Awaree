@@ -1,17 +1,20 @@
 package com.awareeTeam.awaree;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,18 +26,18 @@ public class Register extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference reference;
 
-    private TextView errorEmailText, errorUsernameText, errorPasswordText;
-    private EditText emailText, usernameText, passwordText;
+    private TextInputEditText emailText, usernameText, passwordText;
+    private TextInputLayout emailLayout, userLayout, passwordLayout;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup_register);
 
-        TextView haveAccount = (TextView) findViewById(R.id.alreadyHaveAccount);
+        TextView haveAccount = findViewById(R.id.alreadyHaveAccount);
         haveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishAfterTransition();
             }
         });
 
@@ -47,30 +50,26 @@ public class Register extends AppCompatActivity {
     }
 
     private void configureRegistration() {
-        Button backButton = (Button) findViewById(R.id.registerButton);
+        Button backButton = findViewById(R.id.registerButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailString = emailText.getText().toString(), usernameString = usernameText.getText().toString(), passwordString = passwordText.getText().toString();
                 if (emailString.isEmpty()) {
-                    errorEmailText.setText("Please enter your email address.");
-                    errorEmailText.setVisibility(View.VISIBLE);
-                } else errorEmailText.setVisibility(View.INVISIBLE);
+                    emailLayout.setError(getString(R.string.email_error));
+                }
                 if (usernameString.isEmpty()) {
-                    errorUsernameText.setText("Please enter a username.");
-                    errorUsernameText.setVisibility(View.VISIBLE);
-                } else errorUsernameText.setVisibility(View.INVISIBLE);
+                    userLayout.setError(getString(R.string.user_error));
+                }
                 if (passwordString.isEmpty()) {
-                    errorPasswordText.setText("Please enter a password.");
-                    errorPasswordText.setVisibility(View.VISIBLE);
-                } else errorPasswordText.setVisibility(View.INVISIBLE);
+                    passwordLayout.setError(getString(R.string.password_error));
+                }
 
                 if (!emailString.isEmpty() && !usernameString.isEmpty() && !passwordString.isEmpty()) {
                     if (!isEmailValid(emailString)) {
-                        errorEmailText.setText("Please enter a valid email address.");
-                        errorEmailText.setVisibility(View.VISIBLE);
+                        emailLayout.setError(getString(R.string.email_inv_error));
                     } else {
-                        errorEmailText.setVisibility(View.INVISIBLE);
+                        emailLayout.setError(null);
 
                         reference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -86,8 +85,7 @@ public class Register extends AppCompatActivity {
 
 
                                     if (data.getValue(User.class).getEmail().equals(emailString)) {
-                                        errorEmailText.setText("Email address already registered.");
-                                        errorEmailText.setVisibility(View.VISIBLE);
+                                        emailLayout.setError(getString(R.string.email_taken_error));
                                         foundTheDude = true;
                                         Log.d("DB Read", "Found it. Email already registered.");
                                     }
@@ -98,18 +96,14 @@ public class Register extends AppCompatActivity {
                                 }
                                 if (!foundTheDude) {
                                     if (usernameTaken) {
-                                        errorUsernameText.setText(R.string.taken_error);
-                                        errorUsernameText.setVisibility(View.VISIBLE);
+                                        userLayout.setError(getString(R.string.taken_error));
                                     } else if (usernameString.length() < 3) {
-                                        errorUsernameText.setText(R.string.user_short_error);
-                                        errorUsernameText.setVisibility(View.VISIBLE);
+                                        userLayout.setError(getString(R.string.user_short_error));
                                     } else if (passwordString.length() < 6) { //pana aici avem email valid si username bun
-                                        errorPasswordText.setText(R.string.pass_short_error);
-                                        errorPasswordText.setVisibility(View.VISIBLE);
+                                        passwordLayout.setError(getString(R.string.pass_short_error));
                                     } else {
                                         if (!passwordString.matches(".*\\d.*")) {
-                                            errorPasswordText.setText(R.string.pass_num_error);
-                                            errorPasswordText.setVisibility(View.VISIBLE);
+                                            passwordLayout.setError(getString(R.string.pass_num_error));
                                         } else {
                                             //daca am ajuns aici, suntem bines
                                             Log.d("DB Read", "User information is valid. Proceeding to next step.");
@@ -136,24 +130,28 @@ public class Register extends AppCompatActivity {
                         });
                     }
                 }
+                rememberCredentials();
             }
         });
     }
 
-    private void initialSetup() {
-        emailText = (EditText) findViewById(R.id.registerEmail);
-        usernameText = (EditText) findViewById(R.id.registerUsername);
-        passwordText = (EditText) findViewById(R.id.registerPassword);
+    private void rememberCredentials(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", emailText.getText().toString());
+        editor.putString("password", usernameText.getText().toString());
+        editor.putString("username", passwordText.getText().toString());
+        editor.putBoolean("loginStatus", true);
+        editor.apply();
+    }
 
-        errorEmailText = (TextView) findViewById(R.id.errorEmailText);
-        errorUsernameText = (TextView) findViewById(R.id.errorUsernameText);
-        errorPasswordText = (TextView) findViewById(R.id.errorPasswordText);
-        errorEmailText.setTextColor(getColor(R.color.Burnt_Sienna));
-        errorUsernameText.setTextColor(getColor(R.color.Burnt_Sienna));
-        errorPasswordText.setTextColor(getColor(R.color.Burnt_Sienna));
-        errorEmailText.setVisibility(View.INVISIBLE);
-        errorUsernameText.setVisibility(View.INVISIBLE);
-        errorPasswordText.setVisibility(View.INVISIBLE);
+    private void initialSetup() {
+        emailText = findViewById(R.id.registerEmail);
+        usernameText = findViewById(R.id.registerUsername);
+        passwordText = findViewById(R.id.registerPassword);
+        emailLayout = findViewById(R.id.emailLayoutR);
+        passwordLayout = findViewById(R.id.passwordLayoutR);
+        userLayout = findViewById(R.id.usernameLayoutR);
     }
 
     private boolean isEmailValid(String email) {

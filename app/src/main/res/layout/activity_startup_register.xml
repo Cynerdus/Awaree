@@ -27,150 +27,120 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/email"
+                app:layout_constraintBottom_toTopOf="@+id/emailLayoutR"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/login_02" />
 
-            <EditText
-                android:id="@+id/registerEmail"
-                android:layout_width="0dp"
-                android:layout_height="64dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:transitionName="email"
+                android:id="@+id/emailLayoutR"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/button_default"
-                android:ems="10"
-                android:fontFamily="@font/poppins"
-                android:inputType="textEmailAddress"
-                android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/username"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/email"
+                app:boxStrokeColor="@color/NiceRed"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@+id/usernameLayoutR"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <EditText
-                android:id="@+id/registerUsername"
-                android:layout_width="0dp"
-                android:layout_height="64dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textAutoComplete|textEmailAddress"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/usernameLayoutR"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/button_default"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/passwor"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/username"
+                app:boxStrokeColor="@color/NiceRed"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@+id/passwordLayoutR"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <EditText
-                android:id="@+id/registerPassword"
-                android:layout_width="0dp"
-                android:layout_height="64dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textAutoComplete"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:transitionName="pass"
+                android:id="@+id/passwordLayoutR"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/button_default"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/password"
+                app:boxStrokeColor="@color/NiceRed"
+                app:errorEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/registerButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:passwordToggleEnabled="true">
 
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
-                android:text="@string/email"
-                app:layout_constraintBottom_toTopOf="@+id/registerEmail"
-                app:layout_constraintStart_toStartOf="@+id/registerEmail" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword|textAutoComplete"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="19dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
-                android:text="@string/username"
-                app:layout_constraintBottom_toTopOf="@+id/registerUsername"
-                app:layout_constraintStart_toStartOf="@+id/registerUsername" />
-
-            <TextView
-                android:id="@+id/passwor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
-                android:text="@string/password"
-                app:layout_constraintBottom_toTopOf="@+id/registerPassword"
-                app:layout_constraintStart_toStartOf="@+id/registerPassword" />
-
-            <TextView
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/alreadyHaveAccount"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
+                android:textSize="12sp"
+                android:textAllCaps="false"
                 android:text="@string/alreadyHaveAccount"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/registerButton"
                 app:layout_constraintStart_toStartOf="@+id/registerButton" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                android:transitionName="button"
                 android:id="@+id/registerButton"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="128dp"
                 android:layout_marginEnd="128dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/button_default"
                 android:fontFamily="@font/josefinsans_bold"
-                android:textSize="16dp"
                 android:text="@string/register"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/alreadyHaveAccount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/errorEmailText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/email"
-                app:layout_constraintTop_toBottomOf="@+id/registerEmail" />
-
-            <TextView
-                android:id="@+id/errorUsernameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/username"
-                app:layout_constraintTop_toBottomOf="@+id/registerUsername" />
-
-            <TextView
-                android:id="@+id/errorPasswordText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/passwor"
-                app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,17 +1,16 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/Jet</item>
         <item name="colorPrimaryDark">@color/Indigo_Dye</item>
         <item name="colorAccent">@color/Teal_Blue</item>
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
     </style>
-
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
-
     <style name="Awaree_50x50">
         <item name="android:src">@drawable/awaree_logo</item>
         <item name="android:gravity">center</item>
@@ -19,8 +18,8 @@
         <item name="android:layout_height">50dp</item>
     </style>
 
-    <style name="poppins" parent="android:style/TextAppearance.Small">
-        <item name="android:fontFamily">@font/poppins</item>
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/Snow</item>
     </style>
 
     <style name="LoginButtons">
@@ -37,12 +36,15 @@
     </style>
 
     <style name="AppTheme.FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/Jet</item>
+        <item name="colorAccent">@color/Teal_Blue</item>
+        <item name="colorPrimary">@color/Jet</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/white</item>
-        <item name="actionMenuTextColor">@color/Snow</item>
+        <item name="android:titleTextColor">@color/Snow</item>
+        <item name="actionOverflowButtonStyle">@color/Snow</item>
+        <item name="iconTint">@color/Snow</item>
+        <item name="android:windowBackground">@color/Snow</item>
+        <item name="actionMenuTextColor">@color/Jet</item>
     </style>
     <style name="AppTheme.Slide">
         <item name="android:windowEnterAnimation">@anim/slide_up</item>

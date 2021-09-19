@@ -42,7 +42,7 @@ public class FirebaseDatabaseHelper {
         currentSemester = "Semestrul_1";
         user = "https://awaree-ea116-default-rtdb.firebaseio.com/Specializations/"+profile+"/"+currentYear+"/"+currentSemester;
         mReferenceSubjects = mDatabase.getReferenceFromUrl(user);
-        mReferenceHomework = mDatabase.getReference("Homeworks"); // TODO set a unique file for different users
+        mReferenceHomework = mDatabase.getReference("HwTemp"); // TODO set a unique file for different users
     }
 
     public void readSubjects(final DataStatus dataStatus){
@@ -97,6 +97,24 @@ public class FirebaseDatabaseHelper {
             @Override
             public void onSuccess(Void unused) {
                 dataStatus.DataIsInserted();
+            }
+        });
+    }
+
+    public void updateHomework(String key, Homework homework, final DataStatus dataStatus){
+        mReferenceHomework.child(key).setValue(homework).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                dataStatus.DataIsUpdated();
+            }
+        });
+    }
+
+    public void deleteHomework(String key,final DataStatus dataStatus){
+        mReferenceHomework.child(key).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                dataStatus.DataIsDeleted();
             }
         });
     }
